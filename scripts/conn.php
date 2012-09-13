@@ -10,4 +10,3 @@ if (!mysql_select_db('coupCal', $db)) {
 	echo "Error: unable to select database.";
 	exit;
 }
-?>

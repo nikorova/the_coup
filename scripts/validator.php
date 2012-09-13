@@ -2,14 +2,16 @@
 require_once('conn.php');
 //
 // val upload and return or throw exception
-function validateUpload($up_code) {
-	if ($up_code == UPLOAD_ERR_OK) {
+function validateUpload($err_code) {
+	if ($err_code == UPLOAD_ERR_OK) {
 		return;
 	} else {
-		switch ($up_code) {
+		switch ($err_code) {
 		case UPLOAD_ERR_INI_SIZE:
+			$msg = "Upload error via ini: image too large (limit 3mb).";
+			break;
 		case UPLOAD_ERR_FORM_SIZE:
-			$msg = "Upload error: image too large (limit 15mb).";
+			$msg = "Upload error via form limit: image too large (limit 5mb).";
 			break;
 
 		case UPLOAD_ERR_PARTIAL:
@@ -50,8 +52,8 @@ try {
 
 	// validate
 	validateUpload($image['error']);	
-
-	
+} catch (Exception $err) {
+	echo $err;
+	exit;
 }
 
-?>
