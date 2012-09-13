@@ -1,0 +1,163 @@
+#page-container {
+	width: 772px;
+	margin:auto;
+	background: #272932;
+	border-right: solid;
+	border-right-color: #717272;
+	border-right-width: 14px;
+	border-left: solid;
+	border-left-color: #717272;
+	border-left-width: 14px;
+}
+#navigation {
+	width: 772px;
+	height: 204px;
+	background: #272932;
+}
+#photostream {
+	width:740px;
+	height:278px;
+	margin-left:16px;
+	margin-right:16px;
+}
+#flickrstream {
+	width:740px;
+	height:500px;
+	margin-left:16px;
+	margin-right:16px;
+}
+#promobox {
+	width:740px;
+	height:410px;
+	margin:16px;
+}
+#promoleft {
+	color:#272932;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	background-image:url(../images/news/tonightbkg.jpg);
+	width:340px;
+	height:312px;
+	padding-top:82px;	
+	padding-left:10px;
+	padding-right:10px;
+}
+#promoright {
+	color:#272932;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	background-image:url(../images/news/rightbkg.jpg);
+	width:340px;
+	height:312px;
+	padding-top:82px;
+	padding-left:10px;
+	padding-right:10px;
+	float:right;
+}
+#upcomingbox {
+	background: #272932;
+	color:#c8c3c3;
+	width:740px;
+	height:410px;
+	margin:16px;
+}
+#upcomingleft {
+	background: #272932;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+    color:#c8c3c3;
+	width:332px;
+	height:382px;
+	padding-top:10px;	
+	padding-left:10px;
+	padding-right:10px;
+	overflow:hidden;
+}
+#upcomingright {
+	background: #272932;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#c8c3c3;
+	width:340px;
+	height:382px;
+	padding-top:10px;
+	padding-left:10px;
+	padding-right:10px;
+	float:right;
+}
+#footer {
+	width:772px;
+	height:75px;
+	background:#717272;
+	border-bottom: solid;
+	border-bottom-color: #272932;
+	border-bottom-width: 14px;
+}
+#footerleft {
+	width:372px;
+	height:50px;
+	padding-top:14px;
+	padding-left:14px;
+	color:#272932;
+	font-size:11px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#footerright {
+	width:372px;
+	height:50px;
+	padding-top:14px;
+	padding-right:14px;
+	float:right;
+	text-align:right;
+	color:#272932;
+	font-size:11px;
+}
+#calendar {
+	width:772px;
+	height:700px;
+}
+#merchbox {
+	width:760px;
+	height:1000px;
+	margin-top:16px;
+	margin-left:6px;
+	margin-right:6px;
+}
+#videobox {
+	width:740px;
+	height:400px;
+	margin-top:32px;
+	margin-left:16px;
+	margin-right:16px;
+}
+#map {
+	width:740px;
+	height:360px;
+	margin-top:16px;
+	margin-left:16px;
+	margin-right:16px;
+}
+#aboutinfo {
+	width:740px;
+	height:400px;
+	margin-left:16px;
+	margin-right:16px;
+	color:#717372;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#booking {
+	width:740px;
+	height:900px;
+	margin-left:16px;
+	margin-right:16px;
+	color:#717372;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#headerad {
+	width:772px;
+	height:153px;
+	border:0px;
+	text-align:center;
+}
