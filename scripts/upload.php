@@ -48,10 +48,12 @@ function execSQLInsert($dbh, $row, $table='events') {
 	$placeHolders =	":title, :description, :pub_date, :event_date, "
 		. ":image_name, :image_size, :image_type, :image_path";	
 
-	echo "INSERT INTO $table ($fields) VALUES ($placeHolders)";
+	$sql = "INSERT INTO $table ($fields) VALUES ($placeHolders)";
+
+	echo $sql;
 
 	try {
-		$dbh->prepare("INSERT INTO $table ($fields) VALUES ($placeHolders)");
+		$dbh->prepare($sql);
 		$rowsInserted = $dbh->execute($row);
 		echo "totally inserted $rowsInserted row. well hey.";
 	} catch (PDOException $e) {
