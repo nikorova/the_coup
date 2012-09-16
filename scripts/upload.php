@@ -17,7 +17,6 @@ function createEventFromPost() {
 			"image_size"		=> $_FILES["image"]["size"],
 			"image_type"		=> $_FILES["image"]["type"],
 			"image_err"			=> $_FILES["image"]["error"],
-
 		);
 	} else {
 		echo "retrieval of post data failed";

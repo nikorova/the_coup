@@ -58,6 +58,15 @@ body {
 	background: #262932;
 }
 
+#dev_splash {
+	position: fixed;
+	border-right: 10px solid transparent;
+	background: #262932;
+	box-shadow: 3px 3px 6px black;
+
+	top: 300px;
+	left: 0;
+}
 #upload_event fieldset {
 	padding: 10px;
 	margin: 10px;
