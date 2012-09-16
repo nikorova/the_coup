@@ -64,8 +64,9 @@ body {
 	background: #262932;
 	box-shadow: 3px 3px 6px black;
 
-	top: 300px;
+	bottom: 50px;
 	left: 0;
+	color: grey;
 }
 #upload_event fieldset {
 	padding: 10px;
