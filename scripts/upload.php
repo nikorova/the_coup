@@ -41,7 +41,7 @@ function createRowFromEvent($event, $imagePath) {
 /* 
  * gen and exec sql insert query 
  */
-function execSQLInsert($dbh, $row, $table='events') {
+function execSQLInsert($dbh, $data, $table='events') {
 	$fields = "title, description, pub_date, event_date, image_name, "
 		. "image_size, image_type, image_path";
 
@@ -53,8 +53,8 @@ function execSQLInsert($dbh, $row, $table='events') {
 	echo $sql;
 
 	try {
-		$dbh->prepare($sql);
-		$rowsInserted = $dbh->execute($row);
+		$sth = $dbh->prepare($sql);
+		$rowsInserted = $dbh->execute($data);
 		echo "totally inserted $rowsInserted row. well hey.";
 	} catch (PDOException $e) {
 		echo "insert failed: ". $e->getMessage();
