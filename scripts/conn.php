@@ -1,12 +1,13 @@
 <?php
-$db = mysql_connect('localhost', 'coupCal', 'coupCalPass');
 
-if (!$db) {
-	echo "Error: unable to connect to database server.";
-	exit;
-}
+phpinfo();
+$image = array (
+	"img_size" => "1024x768",
+	"img_name" => "bob.jpg",
+	"img_mime" => "jpg",
+);
 
-if (!mysql_select_db('coupCal', $db)) {
-	echo "Error: unable to select database.";
-	exit;
-}
+$vals = array_values($image);
+$keys = array_keys($image);
+
+echo $vals;

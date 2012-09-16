@@ -1,0 +1,103 @@
+body, body * {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background: url('../static/bg/background2.jpg');
+	background-color: #D2D2D2;
+	background-repeat: no-repeat;
+}
+
+#header {
+	height: 200px;
+	position: relative;
+	background: 	 linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+	background: -moz-linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+
+	font-family: monospace;
+	font-size: 40px;
+	text-align: center;
+	line-height: 200px;
+	color: white;
+}
+
+#header h1{
+	min-width: 775px;
+}
+
+#wrapper {
+	width: 1000px;
+	min-width: 400px;
+	min-height: 475px;
+    position: relative;
+	margin: 50px auto;
+
+	border: 10px solid transparent;
+	box-shadow: 1px 1px 5px grey, -1px -1px 5px grey;
+
+}
+
+#right_bar {
+	width: 630px;	
+	min-width: 200px;
+	min-height: 475px;
+	float: right;
+
+	background: #262932;
+}
+
+
+#left_bar{
+	width: 350px;
+	min-width: 190px;
+	min-height: 450px;
+	float: left;
+
+	border-right: 10px solid transparent;
+	background: #262932;
+}
+
+#upload_event fieldset {
+	padding: 10px;
+	margin: 10px;
+
+	border: none;
+	color: white;
+	font-size: 20px;
+	font-family: monospace;
+}
+
+.input_field {
+	display: block;
+	border: none;
+	height: 25px;
+	width: 300px;
+	line-height: 25px;
+	margin: 10px 0px 5px 10px;
+
+}
+
+#description {
+	height: 100px;
+	width: 300px;
+	max-width: 300px;
+	margin: 10px 0px 5px 10px;
+	border: none;
+}
+
+#up_image {
+	height: 25px;
+	width: 300px;
+	background: white;
+	margin: 10px 0px 5px 10px;
+	border: none;
+	box-shadow: none;
+}
+
+.button {
+	margin: 20px auto;
+	height: 40px;
+	width: 200px;
+	display: block;
+}
