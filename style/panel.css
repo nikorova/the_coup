@@ -59,6 +59,7 @@ body {
 }
 
 #dev_splash {
+	padding-left: 10px;
 	position: fixed;
 	border-right: 10px solid transparent;
 	background: #262932;
