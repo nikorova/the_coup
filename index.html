@@ -21,7 +21,7 @@
 
 <body>
 <div id="dev_splash">
-	<h3> Welcome to the dev version of your fancy pants admin panel! </h3>
+	<h3 class="highlight"> Welcome to the dev version of your fancy pants admin panel! </h3>
 	<p> This is by no means complete and is absolutely liable to change at any time. </p>
 	<p> Also please note that while the code handling the form is functional, it's <span class="highlight">not wired up</span> properly yet.
 	You're welcome to try uploading a file, but the php script handling the upload will just <span class="highlight">puke</span>. </p>
@@ -45,33 +45,33 @@
 			<form id="upload_event" enctype="multipart/form-data" action="scripts/upload.php" method="post"> 
 				<fieldset>
 					<legend> New Event </legend>
-					<label for="title"> title </label>
+					<label class="up_label" for="title"> title </label>
 					<input name="title"
 					id="title"
 					class="input_field"
 					type="text"
 					required> </input>
 
-					<label for="description"> event description </label>
+					<label class="up_label" for="description"> event description </label>
 					<textarea name="description"
 						id="description"
 						requied> </textarea>
 
-					<label for="pub_date"> publication date </label>
+					<label class="up_label" for="pub_date"> publication date </label>
 					<input name="pub_date"
 					id="pub_date"
 					class="input_field"
 					type="date"
 					required> </input>
 
-					<label for="event_date"> event date </label>
+					<label class="up_label" for="event_date"> event date </label>
 					<input name="event_date"
 					id="event_date"
 					class="input_field"
 					type="date"
 					required> </input>
 
-					<label for="up_image"> upload image </label>
+					<label class="up_label" for="up_image"> upload image </label>
 					<input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
 					<input name="image"
 					id="up_image"
@@ -143,9 +143,9 @@
 				</ul>
 			</div>
 		</div>
-		<img class="bottom_logo" src="static/mysql_dolphin_small.jpg" />
-		
 		<div class="clear"></div>
+		<a href="http://mysql.com"><img class="bottom_logo" src="static/mysql_dolphin_small.png" /></a>
+		<a href="http://php.net"><img class="bottom_logo" src="static/php_small.png" /></a>
 	</div>
 </div>
 

@@ -61,47 +61,10 @@ nav {
 	padding: 10px 0px 0px 0px;
 
 	border: 10px solid transparent;
+	border-bottom: 25px solid transparent;
 	border-top: none;
 	box-shadow: 1px 1px 5px grey, -1px -1px 5px grey;
 
-}
-
-#right_bar {
-	width: 630px;	
-	min-width: 200px;
-	float: right;
-
-	background: #262932;
-
-	color: rgb(221, 221, 234);
-}
-
-#right_bar h2 {
-	margin: 5px 0px 5px 15px;
-	font-size: 20px;
-	font-weight: normal;
-}
-
-#upcoming_display {
-	width: 600px; 	
-	height: 500px;
-	margin: 5px 15px 15px 15px;
-
-	border: 1px solid white;
-	background: rgb(221, 221, 234);
-	
-	overflow: auto; 
-	color: black;
-	font-size: 14px; 
-}
-
-#left_bar{
-	width: 350px;
-	min-width: 190px;
-	float: left;
-
-	border-right: 10px solid transparent;
-	background: #262932;
 }
 
 #dev_splash {
@@ -121,6 +84,45 @@ nav {
 	color: grey;
 }
 
+#right_bar {
+	width: 630px;	
+	min-width: 200px;
+	margin: 0px 0px 4px 0px;
+	float: right;
+
+	background: #262932;
+
+	color: rgb(221, 221, 234);
+}
+
+#right_bar h2 {
+	margin: 5px 0px 5px 15px;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+#upcoming_display {
+	width: 600px; 	
+	height: 512px;
+	margin: 5px 15px 15px 15px;
+
+	border: 1px solid white;
+	background: rgb(221, 221, 234);
+	
+	overflow: auto; 
+	color: black;
+	font-size: 16px; 
+}
+
+#left_bar{
+	width: 350px;
+	min-width: 190px;
+	float: left;
+
+	border-right: 10px solid transparent;
+	background: #262932;
+}
+
 #upload_event fieldset {
 	padding: 10px;
 	margin: 10px;
@@ -129,6 +131,19 @@ nav {
 	color: rgb(221, 221, 234);
 	font-size: 20px;
 	font-family: monospace;
+}
+
+#upload_event legend {
+	color: rgb(221, 221, 234);
+	font-size: 20px;
+	border-bottom: 1px solid rgb(221, 221, 234);
+	width: 320px;
+}
+
+.up_label {
+	color: rgb(221, 221, 234);
+	font-size: 16px;
+	margin: 0px 0px 0px 10px;
 }
 
 .input_field {
@@ -196,8 +211,10 @@ nav {
 }
 
 .bottom_logo {
+	height: 20px;
+	width: 20px;
+	margin: 0px 5px 0px 0px;
+	float: right;
 	position: relative;
 	opacity: 0.7;
-	bottom: 0px;'
-	right: 10px;
 }
