@@ -29,7 +29,7 @@ body {
 #wrapper {
 	width: 1000px;
 	min-width: 400px;
-	min-height: 475px;
+	min-height: 540px;
     position: relative;
 	margin: 50px auto;
 
@@ -41,7 +41,7 @@ body {
 #right_bar {
 	width: 630px;	
 	min-width: 200px;
-	min-height: 475px;
+	min-height: 540px;
 	float: right;
 
 	background: #262932;
@@ -51,7 +51,7 @@ body {
 #left_bar{
 	width: 350px;
 	min-width: 190px;
-	min-height: 450px;
+	min-height: 540px;
 	float: left;
 
 	border-right: 10px solid transparent;
