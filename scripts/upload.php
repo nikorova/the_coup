@@ -53,7 +53,7 @@ function execSQLInsert($dbh, $row, $table='events') {
 	try {
 		$dbh->prepare("INSERT INTO $table ($fields) VALUES ($placeHolders)");
 		$rowsInserted = $dbh->execute($row);
-		echo "totally inserted $rowsInserted row. well hey."
+		echo "totally inserted $rowsInserted row. well hey.";
 	} catch (PDOException $e) {
 		echo "insert failed: ". $e->getMessage();
 		exit;
