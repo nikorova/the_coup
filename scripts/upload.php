@@ -27,14 +27,14 @@ function createEventFromPost() {
 
 function createRowFromEvent($event, $imagePath) {
 	return $row = array (
-			"title" 			=> $event["title"],	
-			"description" 		=> $event["description"],
-			"pub_date" 			=> $event["pub_date"],
-			"event_date"		=> $event["event_date"],
-			"image_name"		=> $event["image_name"],
-			"image_size"		=> $event["image_size"],
-			"image_type" 		=> $event["image_type"],
-			"image_path"		=> $imagePath,
+			":title" 			=> $event["title"],	
+			":description" 		=> $event["description"],
+			":pub_date"			=> $event["pub_date"],
+			":event_date"		=> $event["event_date"],
+			":image_name"		=> $event["image_name"],
+			":image_size"		=> $event["image_size"],
+			":image_type" 		=> $event["image_type"],
+			":image_path"		=> $imagePath,
 		);
 }
 
@@ -51,10 +51,9 @@ function execSQLInsert($dbh, $row, $table='events') {
 	echo "INSERT INTO $table ($fields) VALUES ($placeHolders)";
 
 	try {
-		$sth = $dbh->("INSERT INTO $table ($fields) VALUES ($placeHolders)");
-
-
-		$sth->exec($row);
+		$dbh->prepare("INSERT INTO $table ($fields) VALUES ($placeHolders)");
+		$rowsInserted = $dbh->execute($row);
+		echo "totally inserted $rowsInserted row. well hey."
 	} catch (PDOException $e) {
 		echo "insert failed: ". $e->getMessage();
 		exit;
