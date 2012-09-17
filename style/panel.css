@@ -221,7 +221,7 @@ nav {
 
 .event {
 	width: 525px;
-	min-height: 50px;
+	min-height: 90px;
 	margin: 10px 0px 0px 25px;
 	padding: 5px 10px;
 
@@ -232,15 +232,24 @@ nav {
 	list-style: none;
 }
 
+.e_image {
+	width: 95px;
+	height: 62px;
+	float: right; 
+	position: relative;
+
+	border: 1px solid black;
+}
+
 .e_name {
 	color: rgb(221, 221, 234);
 	font-size: 18px;
 }
 
 .desc {
+	margin: 0px 0px 0px 10px;
 	color: rgb(221, 221, 234);
 	font-size: 12px;
-	display: block;
 }
 
 .dates {

@@ -2,6 +2,7 @@
 <html>
 
 <head>
+<title> Coup Panel </title>
 <script type="application/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 <script type="application/javascript" src="scripts/roller.js"></script>
 <link rel="stylesheet" type="text/css" media="all" href="style/panel.css" />
@@ -57,8 +58,7 @@
 						id="description"
 						requied> </textarea>
 
-					<label class="up_label" for="pub_date"> publication date </label>
-					<input name="pub_date"
+					<label class="up_label" for="pub_date"> publication date </label> <input name="pub_date"
 					id="pub_date"
 					class="input_field"
 					type="date"
@@ -79,8 +79,6 @@
 					required />
 
 					<button class="button" type="submit" >Submit </button>
-
-
 				</fieldset>
 			</form>
 		</div>
@@ -89,18 +87,17 @@
 			<h2> Upcoming Events </h2>
 			<div id="upcoming_display">
 				<ul> 
-					<li class="event"> 
-						<span class="e_name">Harty Pard</span>
-						<span class="dates">
-							<span class="p_date">4/34/1567</span>
-							<span class="e_date">4/52/1245</span>
-						</span>
-						<span class="desc"> We gonna harty awl naght lawng oh lawd 
-							booty booty booty booty booty butt cheeks
-							booty booty booty booty booty butt cheeks
-							booty booty booty booty booty butt cheeks
-							booty booty booty booty booty butt cheeks</span>
-					</li>
+				<?php 
+					echo "hey buddy!\n";
+					include './scripts/load_upcoming_events.php';
+					$results = selectAll();
+					$events = createShortDescriptions($results);
+					$markedUpEvents = generateMarkupFromEvents($events);
+			
+					foreach ($markedUpEvents as $eventPreviewLI) {
+						echo $eventPreviewLI;
+					}
+				?>
 				</ul>
 			</div>
 		</div>
