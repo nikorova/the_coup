@@ -218,3 +218,42 @@ nav {
 	position: relative;
 	opacity: 0.7;
 }
+
+.event {
+	width: 525px;
+	min-height: 50px;
+	margin: 10px 0px 0px 25px;
+	padding: 5px 10px;
+
+	border: 1px solid grey; 
+	background: #06546e;
+	background: rgb(6, 84, 110);
+
+	list-style: none;
+}
+
+.e_name {
+	color: rgb(221, 221, 234);
+	font-size: 18px;
+}
+
+.desc {
+	color: rgb(221, 221, 234);
+	font-size: 12px;
+	display: block;
+}
+
+.dates {
+	float: right;	
+}
+
+.e_date {
+	color: rgb(221, 221, 234);
+	font-size: 18px;
+}
+
+.p_date {
+	color: rgb(221, 221, 234);
+	font-size: 14px;
+	font-style: italic;
+}
