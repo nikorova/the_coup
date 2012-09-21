@@ -10,6 +10,10 @@ body {
 	font-family: monospace;
 }
 
+a { 
+	text-decoration: none;
+}
+
 nav ul {
 	display: inline;
 }
@@ -20,7 +24,6 @@ nav ul li {
 }
 
 nav a {
-	text-decoration: none;
 	color: white;
 	font-size: 15px; 
 	margin: 0px 10px 0px 0px;
@@ -39,8 +42,11 @@ nav {
 	position: relative;
 
 
-	background: 	 linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
-	background: -moz-linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+	background-color: 	rgba(22,24,45,0.7);
+	background: 	 	   linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+	background: 	    -o-linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+	background: 	  -moz-linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+	background:    -webkit-linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
 	box-shadow: -1px 1px 4px 0px black;
 
 	text-align: left;
@@ -87,10 +93,7 @@ nav {
 #right_bar {
 	width: 630px;	
 	min-width: 200px;
-	margin: 0px 0px 4px 0px;
-	float: right;
-
-	background: #262932;
+	margin: 0px 0px 4px 0px; float: right; background: #262932;
 
 	color: rgb(221, 221, 234);
 }

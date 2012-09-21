@@ -1,17 +1,6 @@
 <?php
-
-
-function selectAll() {
-	require_once('params.ini.php');
-	try {
-		$dbh = new PDO("mysql:host=$mysqlHost;dbname=$mysqlDB", 
-			$mysqlUser,
-			$mysqlPass);
-		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-	} catch (PDOException $e) {
-		echo "db connection failed: " . $e->getMessage();
-	}
+function selectAllEvents() {
+	include 'conn.php'; 
 
 	$sql = "SELECT title, description, pub_date, event_date, image_path FROM $mysqlEventsTable ";
 
@@ -60,16 +49,18 @@ function generateMarkupFromEvents($events) {
 		$imagePath = "uploads/" . basename($event["image_path"]);
 		$shortDesc = $event["short_description"];
 
-		$markup = "<li class=\"event\">"
-		    . "<p class=\"e_name\"> $name"
-			.	  "<span class=\"dates\">"
-			.		  "<span class=\"p_date\"> $pubDate </span>"
-			.		  "<span class=\"e_date\"> $eventDate </span>"
-			.	  "</span>"
-			. "</p>" 
-			. "<img class=\"e_image\" src=\"$imagePath\" ></img>"
-			. "<p class=\"desc\"> $shortDesc </p>"
-			. "</li>";
+		$markup = "<a href=\"#\">"
+			. "<li class=\"event\">"
+		    .	  "<p class=\"e_name\"> $name"
+			.		  "<span class=\"dates\">"
+			.			  "<span class=\"p_date\"> $pubDate </span>"
+			.			  "<span class=\"e_date\"> $eventDate </span>"
+			.		  "</span>"
+			.	  "</p>" 
+			.	  "<img class=\"e_image\" src=\"$imagePath\" ></img>"
+			.	  "<p class=\"desc\"> $shortDesc </p>"
+			. "</li>"
+			. "</a>";
 
 		$eventsMarkup[] = $markup;
 	}

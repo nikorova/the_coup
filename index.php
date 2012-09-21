@@ -4,7 +4,11 @@
 <head>
 <title> Coup Panel </title>
 <script type="application/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
-<script type="application/javascript" src="scripts/roller.js"></script>
+
+<!--
+<script type="application/javascript" src="scripts/coupPanelUpload.js"></script>
+-->
+
 <link rel="stylesheet" type="text/css" media="all" href="style/panel.css" />
 
 <!--[if IE]>
@@ -43,7 +47,7 @@
 
 	<div id="app">
 		<div id="left_bar">
-			<form id="upload_event" enctype="multipart/form-data" action="scripts/upload.php" method="post"> 
+			<form id="upload_event" enctype="multipart/form-data" > 
 				<fieldset>
 					<legend> New Event </legend>
 					<label class="up_label" for="title"> title </label>
@@ -56,8 +60,7 @@
 					<label class="up_label" for="description"> event description </label>
 					<textarea name="description"
 						id="description"
-						requied> </textarea>
-
+						requied> </textarea> 
 					<label class="up_label" for="pub_date"> publication date </label> <input name="pub_date"
 					id="pub_date"
 					class="input_field"
@@ -78,7 +81,7 @@
 					type="file"
 					required />
 
-					<button class="button" type="submit" >Submit </button>
+					<button id="#upload_submit" class="button" type="submit" >Submit </button>
 				</fieldset>
 			</form>
 		</div>
@@ -86,18 +89,9 @@
 		<div id="right_bar">
 			<h2> Upcoming Events </h2>
 			<div id="upcoming_display">
+				<button id="load_events"> ROAD EVENTS</button>
 				<ul> 
-				<?php 
-					echo "hey buddy!\n";
-					include './scripts/load_upcoming_events.php';
-					$results = selectAll();
-					$events = createShortDescriptions($results);
-					$markedUpEvents = generateMarkupFromEvents($events);
-			
-					foreach ($markedUpEvents as $eventPreviewLI) {
-						echo $eventPreviewLI;
-					}
-				?>
+					
 				</ul>
 			</div>
 		</div>
@@ -110,6 +104,24 @@
 <div id="footer">
 
 </div>
+
+<script type="application/javascript"> 
+;$('#upload_event').on('submit', function () {
+	var formData = $(this).serialize();
+	console.log(formData);
+
+	$.ajax('scripts/upload.php', {
+		type: 'POST',
+	 	content: 'multipart/form-data',
+		data: formData, 
+		success: alert(' was success ok'),
+		error: alert('was no good ok'), 
+		complete: alert('complete callback'), 
+	});
+
+	return false;	
+});
+	</script>
 
 </body>
 
