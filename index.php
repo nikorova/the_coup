@@ -47,7 +47,8 @@
 
 	<div id="app">
 		<div id="left_bar">
-			<form id="upload_event" enctype="multipart/form-data" > 
+			<form id="upload_event" 
+				enctype="multipart/form-data" > 
 				<fieldset>
 					<legend> New Event </legend>
 					<label class="up_label" for="title"> title </label>
@@ -89,10 +90,6 @@
 		<div id="right_bar">
 			<h2> Upcoming Events </h2>
 			<div id="upcoming_display">
-				<button id="load_events"> ROAD EVENTS</button>
-				<ul> 
-					
-				</ul>
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -106,30 +103,25 @@
 </div>
 
 <script type="application/javascript"> 
-;$(document).on('submit','#upload_event', function () {
-	// sneak the iframe onto the form
-	iframe = '<iframe id="upIframe" class="hidden"/>
-	$('#left_panel').append(iframe);
+;$(document).ready(function (e) {
+	$(document).on('submit','#upload_event', function () {
+		// sneak the iframe onto the form
+		iframe = '<iframe id="upIframe" class="hidden"/>';
+		$('#left_panel').append(iframe);
 
-	// set the form's target to the iframe
-	$('#upload_event').attr('target', 'upFrame');
+		// set attributes of form to reflect target iframe and upload 
+		// script	
+		uploadScript = 'scripts/upload.php';
+		$('#upload_event').attr({
+			'target': 'upFrame',
+				'action': uploadScript,
+				'method': 'POST',
+		});
 
-	// get the form data and make the POST
-	var formData = $(this).serialize();
-	console.log(formData);
-
-	$.ajax('scripts/upload.php', {
-		type: 'POST',
-	 	content: 'multipart/form-data',
-		data: formData, 
-		success: alert(' was success ok'),
-		error: alert('was no good ok'), 
-		complete: alert('complete callback'), 
+		return false;	
 	});
-
-	return false;	
 });
-	</script>
+</script>
 
 </body>
 
