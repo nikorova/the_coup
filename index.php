@@ -104,18 +104,37 @@
 
 <script type="application/javascript"> 
 ;$(document).ready(function (e) {
+	var uploadScript = 'scripts/upload.php';
+	var getScript = 'scripts/load_upcoming_events.php';
+
+	// stick event objects in eventBag
+	var storeEvents = function (events, ) {
+		var eventsBag = {};
+
+		$.each(events, function (index, value) {
+			eventsBag[index] = value;
+			)};
+	};
+	
+	var getEventsFromServer = function (script, callbacks) {
+		$.ajax(script, {
+			 	method: 'GET',
+				success: 
+		});
+	}
+
+	getEvetns(getScript);
 	$(document).on('submit','#upload_event', function () {
 		// sneak the iframe onto the form
-		iframe = '<iframe id="upIframe" class="hidden"/>';
+		var iframe = '<iframe id="upIframe" class="hidden"/>';
 		$('#left_panel').append(iframe);
 
 		// set attributes of form to reflect target iframe and upload 
 		// script	
-		uploadScript = 'scripts/upload.php';
 		$('#upload_event').attr({
 			'target': 'upFrame',
-				'action': uploadScript,
-				'method': 'POST',
+			'action': uploadScript,
+			'method': 'POST',
 		});
 
 		return false;	
