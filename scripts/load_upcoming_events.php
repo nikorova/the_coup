@@ -67,3 +67,7 @@ function generateMarkupFromEvents($events) {
 
 	return $eventsMarkup;
 }
+
+$res = selectAllEvents();
+$shortEvents = createShortDescriptions($res);
+exit($eventsMarkup = generateMarkupFromEvents($shortEvents));

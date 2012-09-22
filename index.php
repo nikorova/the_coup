@@ -106,7 +106,15 @@
 </div>
 
 <script type="application/javascript"> 
-;$('#upload_event').on('submit', function () {
+;$(document).on('submit','#upload_event', function () {
+	// sneak the iframe onto the form
+	iframe = '<iframe id="upIframe" class="hidden"/>
+	$('#left_panel').append(iframe);
+
+	// set the form's target to the iframe
+	$('#upload_event').attr('target', 'upFrame');
+
+	// get the form data and make the POST
 	var formData = $(this).serialize();
 	console.log(formData);
 
