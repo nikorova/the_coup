@@ -107,37 +107,22 @@
 	var uploadScript = 'scripts/upload.php';
 	var getScript = 'scripts/load_upcoming_events.php';
 
-	// stick event objects in eventBag
-	var storeEvents = function (events, ) {
-		var eventsBag = {};
+	// event manager
+	// * manages collection of events
+	// * * get events from server & add to collection
+	// * * get event from form & send to server/add to collection
+	// * * delete from collection & send delect request to server
+	// * * edit by id & send update request
+	// * publish updates to observers
+	// * listen to events from ui for update
 
-		$.each(events, function (index, value) {
-			eventsBag[index] = value;
-			)};
-	};
-	
-	var getEventsFromServer = function (script, callbacks) {
-		$.ajax(script, {
-			 	method: 'GET',
-				success: 
-		});
-	}
-
-	getEvetns(getScript);
-	$(document).on('submit','#upload_event', function () {
-		// sneak the iframe onto the form
-		var iframe = '<iframe id="upIframe" class="hidden"/>';
-		$('#left_panel').append(iframe);
-
-		// set attributes of form to reflect target iframe and upload 
-		// script	
-		$('#upload_event').attr({
-			'target': 'upFrame',
-			'action': uploadScript,
-			'method': 'POST',
-		});
-
-		return false;	
+	// display manager (will have two of these, one for panel, one for front page)
+	// * listen for events from event manager
+	// * publish update events
+	// * pull new events
+	// * check the date/time for scheduled dom update
+	// * format events into markup
+	// * insert into dom
 	});
 });
 </script>
