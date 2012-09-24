@@ -107,6 +107,8 @@
 	var uploadScript = 'scripts/upload.php';
 	var getScript = 'scripts/load_upcoming_events.php';
 
+
+
 	// event manager
 	// * manages collection of events
 	// * * get events from server & add to collection
@@ -115,15 +117,56 @@
 	// * * edit by id & send update request
 	// * publish updates to observers
 	// * listen to events from ui for update
+	EMan = (function () {
+		var getScript = 'scripts/load_upcoming_events.php';
 
-	// display manager (will have two of these, one for panel, one for front page)
-	// * listen for events from event manager
-	// * publish update events
-	// * pull new events
-	// * check the date/time for scheduled dom update
-	// * format events into markup
-	// * insert into dom
-	});
+		function stuffBag(events) {
+			$.each(events, function (k, e) {
+				$('#upcoming_display').data('event'+e.id,e);
+				sessionStorage.setItem('event'+e.id, e);
+			});
+			return events.length;
+		}
+		
+		return {
+			fetch: function() {
+				var resp = $.get(getScript, function (durp, ts, xhr) {
+					console.log('stuffed: ', stuffBag(JSON.parse(durp)));
+					console.log(ts, ' callback completed.');
+				});
+
+			},
+
+			get: function () {
+			},
+
+			list: function () {
+				console.log('hurp: ', $('#upcoming_display').data());
+			}
+		}
+	}) ();
+
+	Builder = (function () {
+		var CPEventTemp = '<li class="event">'
+			+ '<p class="e_name">'; 
+
+
+		return {
+			build: function(limit) {
+			    var dutrh = $('#upcoming_display').data('event'+limit);
+				e = sessionStorage.getItem('event21');
+				console.log(e);
+			},
+
+			get: function() {
+				return aMarkup;
+			}	
+		};
+	}) ();
+
+	EMan.fetch();	
+	EMan.get();
+	Builder.build(5);
 });
 </script>
 
