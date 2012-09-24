@@ -90,6 +90,7 @@
 		<div id="right_bar">
 			<h2> Upcoming Events </h2>
 			<div id="upcoming_display">
+				<ul id="eList"></ul>
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -107,8 +108,6 @@
 	var uploadScript = 'scripts/upload.php';
 	var getScript = 'scripts/load_upcoming_events.php';
 
-
-
 	// event manager
 	// * manages collection of events
 	// * * get events from server & add to collection
@@ -122,8 +121,7 @@
 
 		function stuffBag(events) {
 			$.each(events, function (k, e) {
-				$('#upcoming_display').data('event'+e.id,e);
-				sessionStorage.setItem('event'+e.id, e);
+				sessionStorage.setItem('event'+e.id, JSON.stringify(e));
 			});
 			return events.length;
 		}
@@ -147,15 +145,33 @@
 	}) ();
 
 	Builder = (function () {
-		var CPEventTemp = '<li class="event">'
-			+ '<p class="e_name">'; 
+		var ifYouBuildIt = function (e) {
+			var symbols = [];
+			symbols[0] = e.id;
+			symbols[1] = e.title;
+			symbols[2] = e.pub_date;
+			symbols[3] = e.event_date;
+			symbols[4] = e.image_path;
+			symbols[5] = e.description;
 
+			var CPEventTemp = '<li class="event" id="event'+symbols[0]+'">'
+				+ '<p class="e_name">' + symbols[1]
+				+ '<span class="dates">'
+				+   '<span class="p_date">' + symbols[2] + '</span>'
+				+   '<span class="e_date">'	+ symbols[3] + '</span>' 
+				+ '</span></p>'
+				+ '<img class="e_image" src="' + symbols[4] + '"/>'
+				+ '<p class="desc">' + symbols[5]
+				+ '</p></li></a>';
+
+			console.log(CPEventTemp);	
+			return(CPEventTemp);
+		}
 
 		return {
-			build: function(limit) {
-			    var dutrh = $('#upcoming_display').data('event'+limit);
-				e = sessionStorage.getItem('event21');
-				console.log(e);
+			build: function(id) {
+				var e = JSON.parse(sessionStorage.getItem('event'+id));
+				return ifYouBuildIt(e);
 			},
 
 			get: function() {
@@ -163,10 +179,25 @@
 			}	
 		};
 	}) ();
+	
+	// target div and stick 
+	DMan = (function () {
+		var subjects = [];
+
+		return {
+			addSubject: function(sub) {
+
+			},
+		};
+	}) ();
 
 	EMan.fetch();	
-	EMan.get();
-	Builder.build(5);
+	var event5 = $(Builder.build(5));
+	$(document).on('click', '#upcoming_display', function(e) {
+		$(this).append(Builder.build(1));	
+	});
+	$('#eList').append(event5);
+
 });
 </script>
 
