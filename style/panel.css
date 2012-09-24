@@ -213,6 +213,12 @@ nav {
 	color: rgb(210, 210, 210);
 }
 
+.hidden {
+	display: none;
+	height: 0px;
+	width: 0px;
+}
+
 .bottom_logo {
 	height: 20px;
 	width: 20px;

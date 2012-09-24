@@ -118,6 +118,7 @@
 	// * listen to events from ui for update
 	EMan = (function () {
 		var getScript = 'scripts/load_upcoming_events.php';
+		var uploadScript = 'scripts/upload.php';
 
 		function stuffBag(events) {
 			$.each(events, function (k, e) {
@@ -180,7 +181,6 @@
 		};
 	}) ();
 	
-	// target div and stick 
 	DMan = (function () {
 		var subjects = [];
 
@@ -191,10 +191,32 @@
 		};
 	}) ();
 
+	ForMan = (function () {
+		var form = $('#upload_event');
+
+		return {
+			
+		};
+	}) ();
+
 	EMan.fetch();	
 	var event5 = $(Builder.build(5));
 	$(document).on('click', '#upcoming_display', function(e) {
 		$(this).append(Builder.build(1));	
+	});
+
+	$(document).on('submit', '#upload_event', function (e) {
+		var iframe = $('<iframe id="upframe" class="hidden"></iframe>');
+		$(this).attr({
+			'target': 'upframe',
+			'method': 'POST', 
+			'action': uploadScript	
+		});
+
+		console.log('blarg: ', $(this));
+		$('#upload_event').append(iframe);	
+
+		return false;
 	});
 	$('#eList').append(event5);
 
