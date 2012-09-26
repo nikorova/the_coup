@@ -1,30 +1,38 @@
 <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <html>
 
 <head>
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width">
+
 <title> Coup Panel </title>
+<meta name="description" content="resource panel for The Coup - Clarksville, TN">
+
+<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 <script type="application/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 
-<!--
-<script type="application/javascript" src="scripts/coupPanelUpload.js"></script>
--->
-
+<link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" type="text/css" media="all" href="style/panel.css" />
 
-<!--[if IE]>
-	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
-<![endif]-->
-
-<!--[if lte IE 7]>
-	<script src="js/IE8.js" type="text/javascript"></script>
-<![endif]-->
-
-<!--[if lt IE 7]>
-	<link rel="stylesheet" type="text/css" media="all" href="css/ie6.css"/>
-<![endif]-->
 </head>
 
 <body>
+<!--[if lt IE 7]>
+	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
 <div id="dev_splash">
 	<h3 class="highlight"> Welcome to the dev version of your fancy pants admin panel! </h3>
 	<p> This is by no means complete and is absolutely liable to change at any time. </p>
@@ -116,6 +124,7 @@
 	// * * edit by id & send update request
 	// * publish updates to observers
 	// * listen to events from ui for update
+
 	EMan = (function () {
 		var getScript = 'scripts/load_upcoming_events.php';
 		var uploadScript = 'scripts/upload.php';
@@ -214,8 +223,10 @@
 		});
 
 		console.log('blarg: ', $(this));
+
 		$('#upload_event').append(iframe);	
 
+		console.log($('#upframe').val());
 		return false;
 	});
 	$('#eList').append(event5);
