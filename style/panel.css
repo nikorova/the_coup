@@ -85,7 +85,7 @@ nav {
 	background: #262932;
 	box-shadow: 3px 3px 6px black;
 
-	top: 720px;
+	top: 740px;
 	left: 0px;
 	color: grey;
 }
@@ -96,6 +96,7 @@ nav {
 	margin: 0px 0px 4px 0px; float: right; background: #262932;
 
 	color: rgb(221, 221, 234);
+	border: 1px solid #595F70;
 }
 
 #right_bar h2 {
@@ -122,7 +123,7 @@ nav {
 	min-width: 190px;
 	float: left;
 
-	border-right: 10px solid transparent;
+	border: 1px solid #595F70;
 	background: #262932;
 }
 
@@ -178,12 +179,10 @@ nav {
 }
 
 #up_image {
-	height: 25px;
-	width: 300px;
 	margin: 10px 0px 5px 10px;
 
 	background: rgb(221, 221, 234); 
-	border: none;
+	border: 3px solid red;
 	box-shadow: none;
 }
 

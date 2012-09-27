@@ -1,9 +1,9 @@
 <!DOCTYPE html>
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<html>
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--> <html>
 
 <head>
 
@@ -18,8 +18,8 @@
 <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 <script type="application/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 
-<link rel="stylesheet" href="css/normalize.css">
-<link rel="stylesheet" type="text/css" media="all" href="style/panel.css" />
+<link rel="stylesheet" href="style/panel.css">
+<link rel="stylesheet" type="text/css" media="all" href="css/main.css" />
 
 </head>
 
@@ -40,8 +40,8 @@
 	You're welcome to try uploading a file, but the php script handling the upload will just <span class="highlight">puke</span>. </p>
 </div>
 
-<div id="wrapper">
-	<div id="header">
+<div id="wrapper" class="borderTrans .boxShadowBlack ">
+	<div id="header" class="fontWhite BGpurpleGradientAplha boxShadowBlack">
 		<nav>
 			<h1> Coup Panel </h1>
 			<ul> 
@@ -53,7 +53,7 @@
 	</div>
 	<div class="corner_bit"></div>
 
-	<div id="app">
+	<div id="app" >
 		<div id="left_bar">
 			<form id="upload_event" 
 				enctype="multipart/form-data" > 
@@ -70,7 +70,9 @@
 					<textarea name="description"
 						id="description"
 						requied> </textarea> 
-					<label class="up_label" for="pub_date"> publication date </label> <input name="pub_date"
+
+					<label class="up_label" for="pub_date"> publication date </label> 
+					<input name="pub_date"
 					id="pub_date"
 					class="input_field"
 					type="date"
@@ -129,107 +131,176 @@
 		var getScript = 'scripts/load_upcoming_events.php';
 		var uploadScript = 'scripts/upload.php';
 
-		function stuffBag(events) {
-			$.each(events, function (k, e) {
-				sessionStorage.setItem('event'+e.id, JSON.stringify(e));
-			});
-			return events.length;
+		// event store using session storage
+		// sessionStorage object accepts key,val pairs and caches them
+		// key will be a string, val will be an obj
+		//
+		// don't forget to reconstitue the objects upon retrieval,
+		//   as they are stringified when set
+		var eventBag = window.sessionStorage;
+
+		function create (key, obj) {
+			if (eventBag.getItem(key)) {
+				console.log('event object at ', key, ' already exists.');	
+			} else {
+				eventBag.setItem(key, obj);
+			}
 		}
 		
+		function read (id) {
+			var eventItem = eventBag.getItem(id);
+
+			if (eventItem) {
+				return eventItem;
+			} else {
+				console.log('no event by id: ',id);
+			}
+		}
+
+		function update (id) {
+
+		}
+
+		function del (id) {
+			if (eventBag.getItem(id)) {
+				eventBag.removeItem(id);
+				console.log('removed event: ', id);
+			} else {
+				console.log('no event by id: ', id);
+			}
+		}
+
+		// get's current collection of events from server as json string
+		// re-hydrates them and passes them to create() as id, obj
+		function fetchFromServer () {
+			var response = $.get(getScript, function (data, stat, jqxhr) {
+				if (stat == 'success') {
+					var dataObjs = JSON.parse(data);
+
+					console.log('received: ', data.length);
+
+					// $.each() passes k,v to callback, k is unused 
+					$.each(dataObjs, function(k, v) {
+						create(v.id, v);
+					});
+				} else {
+					var message = 'GET to server reports: ' + stat 
+						+ 'jqxhr to follow: ' + jqxhr;
+					console.log(message);
+				}
+			});
+		}
+
+		// API
 		return {
-			fetch: function() {
-				var resp = $.get(getScript, function (durp, ts, xhr) {
-					console.log('stuffed: ', stuffBag(JSON.parse(durp)));
-					console.log(ts, ' callback completed.');
-				});
+			// fire this puppy up
+			init: function () {
+				fetchFromServer();
+			}, 
 
+			// returns event object
+			getEventByID: function (id) {
+				return JSON.parse(read(id));
 			},
 
-			get: function () {
+			// remove obj from Bag
+			deleteEventByID: function (id) {
+				del(id);
 			},
 
-			list: function () {
-				console.log('hurp: ', $('#upcoming_display').data());
+			// update obj with new data
+			updateEvent: function (id, newData) {
+				
 			}
 		}
 	}) ();
 
+	// this guy's job is to build markup from objects
 	Builder = (function () {
-		var ifYouBuildIt = function (e) {
-			var symbols = [];
-			symbols[0] = e.id;
-			symbols[1] = e.title;
-			symbols[2] = e.pub_date;
-			symbols[3] = e.event_date;
-			symbols[4] = e.image_path;
-			symbols[5] = e.description;
+		var panelEvent = {
+			'elem': '<li />',
+				'class': 'event',
+				'child': {
+					'elem': '<p />',
+					'class': 'e_name',
+					'html': eventItem.title,
+					'child': {
+						'elem': '<span />',
+						'class': 'dates',
+						'child': {
+							'elem': '<span />',
+							'class': 'p_date',
+							'html': eventItem.pubDate,
+						},
+						'child': {
+							'elem': '<span />',
+							'class': 'e_date',
+							'html': eventItem.eventDate,
+						}	
+					}
+					'child': {
+						'elem': '<img />',
+						'class': 'e_image',
+						'attr': {
+							'src': eventItem.imagePath
+						}
+					}
+					'child': {
+						'elem': '<p />',
+						'class': 'desc',
+						'html': eventItem.description
+					}
+				}
+			};
 
-			var CPEventTemp = '<li class="event" id="event'+symbols[0]+'">'
-				+ '<p class="e_name">' + symbols[1]
-				+ '<span class="dates">'
-				+   '<span class="p_date">' + symbols[2] + '</span>'
-				+   '<span class="e_date">'	+ symbols[3] + '</span>' 
-				+ '</span></p>'
-				+ '<img class="e_image" src="' + symbols[4] + '"/>'
-				+ '<p class="desc">' + symbols[5]
-				+ '</p></li></a>';
-
-			console.log(CPEventTemp);	
-			return(CPEventTemp);
-		}
-
-		return {
-			build: function(id) {
-				var e = JSON.parse(sessionStorage.getItem('event'+id));
-				return ifYouBuildIt(e);
+		var panelWidget = [{
+			'li': {
+				'class': 'event',
 			},
+			'p': {
+				'class': 'e_name',
+			},
+			'span': {
+				'class': 'dates'
+			},
+			'span': {
+				'class': 'p_date'
+			},
+			'span': {
+				'class': 'e_date'
+			},
+			'img': {
+				'class': 'e_image',
+				'attr': 'src',
+			}
+		}];
 
-			get: function() {
-				return aMarkup;
+		var panelEvent = $('<li />') .addClass('event')
+			.append($('<p />') .addClass('e_name') .html(eventItem.title)
+			.append($('<span />').addClass('dates')
+			.append($('<span />').addClass('p_date')
+			.append($('<span />').addClass('e_date')
+			.append($('<img />').addClass('e_image').attr('src', eventItem.imagePath)
+			.append($('<p />').addClass('desc').html(eventItem.description);
+
+
+		function createEventMarkup(template, eventObj) {
+			if (type == 'panel') {
+				
+			} else if (type == 'front_page') {
+
+			}
+
+		}
+			
+		return {
+			createDiv: function (type, eventObj) {
 			}	
-		};
+			},
+		}
 	}) ();
 	
-	DMan = (function () {
-		var subjects = [];
-
-		return {
-			addSubject: function(sub) {
-
-			},
-		};
-	}) ();
-
-	ForMan = (function () {
-		var form = $('#upload_event');
-
-		return {
-			
-		};
-	}) ();
-
-	EMan.fetch();	
-	var event5 = $(Builder.build(5));
-	$(document).on('click', '#upcoming_display', function(e) {
-		$(this).append(Builder.build(1));	
-	});
-
-	$(document).on('submit', '#upload_event', function (e) {
-		var iframe = $('<iframe id="upframe" class="hidden"></iframe>');
-		$(this).attr({
-			'target': 'upframe',
-			'method': 'POST', 
-			'action': uploadScript	
-		});
-
-		console.log('blarg: ', $(this));
-
-		$('#upload_event').append(iframe);	
-
-		console.log($('#upframe').val());
-		return false;
-	});
-	$('#eList').append(event5);
+	EMan.init();
 
 });
 </script>

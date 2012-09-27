@@ -93,13 +93,82 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+	background: url('../static/bg/background2.jpg);
+	background-color: #D2D2D2;
+	background-repeat: no-repeat;
+	font-family: monospace;
+}
+
+a { text-decoration: none; }
+
+/* bg's & gradients, borders & shadows*/
+.fontBlack { color: black; }
+.fontSmoothGrey { color: rgb(221, 221, 234); }
+.fontWhite { color: white; }
+
+.BGpurpGradientAlpha {
+	background-color: 	rgba(22,24,45,0.7);
+	background: 	 	   linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+	background: 	    -o-linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+	background: 	  -moz-linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+	background:    -webkit-linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+}
+
+.BGsmoothGrey { background: rgb(221, 221, 234); }
+
+.boxShadowBlack { box-shadow: 3px 3px 6px 0px black; }
+.borderBlack { border: 1px solid black; }
+.borderWhite { border: 1px solid white; }
+
+.borderTrans { border: 10px solid transparent; }
+.borderNone { border: none; }
+
+/* id's */
+#app {
+	width: 1000px;
+	margin-top: 50px;	
+}
+
+#header {
+	height: 
+}
+
+.control {  
+
+}
+
+.display {
+
+}
 
 
+/* characteristics */
 
+.floatRight { float: right; }
+.floatLeft { float: left; }
 
+.center {
+	margin: 0px auto;
+	position: relative;
+}
 
+.absolute { position: absolute; }
 
+.block { display: block; }
+.inline { display: inline; }
 
+.highlight { color: rgb(210, 210, 210); }
+.hidden { display: none; }
+
+.bottomLogo {
+	height: 20px;
+	width: 20px;
+	margin: 0px 5px 0px 0px;
+	float: right;
+	position: relative;
+	opacity: 0.7;
+}
 
 
 
