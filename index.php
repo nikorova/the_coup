@@ -17,6 +17,7 @@
 
 <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 <script type="application/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<script src="js/panel.js"></script>
 
 <link rel="stylesheet" href="style/panel.css">
 <link rel="stylesheet" type="text/css" media="all" href="css/main.css" />
@@ -114,6 +115,7 @@
 </div>
 
 <script type="application/javascript"> 
+/*
 ;$(document).ready(function (e) {
 	var uploadScript = 'scripts/upload.php';
 	var getScript = 'scripts/load_upcoming_events.php';
@@ -217,6 +219,7 @@
 
 	// this guy's job is to build markup from objects
 	Builder = (function () {
+/*
 		var panelEvent = {
 			'elem': '<li />',
 				'class': 'event',
@@ -301,8 +304,8 @@
 	}) ();
 	
 	EMan.init();
-
 });
+ */
 </script>
 
 </body>
