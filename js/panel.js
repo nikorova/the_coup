@@ -47,35 +47,9 @@
 
 	EventStore.init('scripts/load_upcoming_events.php');
 
-	$('#upload_event').on('submit', function (e) {
-
-		var upframe = $('<iframe />')
-			.addClass('hidden')
-			.attr('id', 'upframe');
-
-		$(this).append(upframe);
-
-		$(this).attr({
-			'action': 'scripts/upload.php',
-			'target': 'upframe',
-			'method': 'POST'
-		});
-
-		e.preventDefault();
-	});
-
-	$(document).on('load', function (e) {
-		console.log('event: ', e.type);
-		var XHR = e.target;
-		var eventItem = XHR.response; 
-		console.log('xhr: ', XHR);
-		console.log('loaded: ', eventItem);
-			
-		if (XHR.response.status == 200) {
-			EventStore.store(eventItem);
-		}
-	});
-
+	//
+	$('#upload_event').fileupload();	
+	
 	$(window).on('storage', function (e) {
 		var eventItem = e.newValue;	
 
@@ -86,4 +60,3 @@
 });
 
 // later
-

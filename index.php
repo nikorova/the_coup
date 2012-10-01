@@ -15,12 +15,24 @@
 <title> Coup Panel </title>
 <meta name="description" content="resource panel for The Coup - Clarksville, TN">
 
-<script src="js/vendor/modernizr-2.6.2.min.js"></script>
-<script type="application/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
-<script src="js/panel.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+<script type="application/javascript" src="js/vendor/modernizr-2.6.2.min.js"></script>
+
+
+<script type="application/javascript" src="js/vendor/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
+<script type="application/javascript" src="js/vendor/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
+<script type="application/javascript" src="js/vendor/jQuery-File-Upload/js/jquery.fileupload.js"></script>
+<script type="application/javascript" src="js/vendor/jQuery-File-Upload/js/jquery.fileupload-fp.js"></script>
+<script type="application/javascript" src="js/vendor/jQuery-File-Upload/js/jquery.fileupload-ui.js"></script>
+
+<script type="application/javascript" src="js/panel.js"></script>
 
 <link rel="stylesheet" href="style/panel.css">
 <link rel="stylesheet" type="text/css" media="all" href="css/main.css" />
+
+<script> 
+</script>
 
 </head>
 
@@ -31,8 +43,6 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
-<script src="js/plugins.js"></script>
-<script src="js/main.js"></script>
 
 <div id="dev_splash">
 	<h3 class="highlight"> Welcome to the dev version of your fancy pants admin panel! </h3>
@@ -114,6 +124,7 @@
 
 </div>
 
+<!--
 <script type="application/javascript"> 
 /*
 ;$(document).ready(function (e) {
@@ -307,6 +318,7 @@
 });
  */
 </script>
+-->
 
 </body>
 
