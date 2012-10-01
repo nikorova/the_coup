@@ -19,13 +19,7 @@
 
 <script type="application/javascript" src="js/vendor/modernizr-2.6.2.min.js"></script>
 
-
-<script type="application/javascript" src="js/vendor/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
-<script type="application/javascript" src="js/vendor/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
-<script type="application/javascript" src="js/vendor/jQuery-File-Upload/js/jquery.fileupload.js"></script>
-<script type="application/javascript" src="js/vendor/jQuery-File-Upload/js/jquery.fileupload-fp.js"></script>
-<script type="application/javascript" src="js/vendor/jQuery-File-Upload/js/jquery.fileupload-ui.js"></script>
-
+<script type="application/javascript" src="js/plugins.js"></script>
 <script type="application/javascript" src="js/panel.js"></script>
 
 <link rel="stylesheet" href="style/panel.css">
