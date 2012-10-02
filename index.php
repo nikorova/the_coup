@@ -13,13 +13,12 @@
 <meta name="viewport" content="width=device-width">
 
 <title> Coup Panel </title>
-<meta name="description" content="resource panel for The Coup - Clarksville, TN">
+<meta name="description" content="resource main for The Coup - Clarksville, TN">
 
 
 <script type="application/javascript" src="js/vendor/modernizr-2.6.2.min.js"></script>
 
 
-<link rel="stylesheet" href="style/panel.css">
 <link rel="stylesheet" type="text/css" media="all" href="css/main.css" />
 
 <script> 
