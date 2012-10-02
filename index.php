@@ -15,10 +15,9 @@
 <title> Coup Panel </title>
 <meta name="description" content="resource main for The Coup - Clarksville, TN">
 
-
 <script type="application/javascript" src="js/vendor/modernizr-2.6.2.min.js"></script>
 
-
+<link type="text/css" href="css/eggplant/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" media="all" href="css/main.css" />
 
 <script> 
@@ -34,6 +33,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.js"><\/script>')</script>
 
+<script type="application/javascript" src="js/vendor/jquery-ui-1.8.24.custom.min.js"></script>
 <script type="application/javascript" src="js/plugins.js"></script>
 <script type="application/javascript" src="js/main.js"></script>
 

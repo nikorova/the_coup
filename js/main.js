@@ -77,6 +77,7 @@
 		},
 	};
 
+	// init Event Store
 	EventStore.init('scripts/load_upcoming_events.php');
 
 	// check for File API
@@ -101,11 +102,15 @@
 		$('#upcoming_display').append(EDB.build('panel', data.result));
 	});
 
+	// bind datepicker to form elements
+	$('#event_date').datepicker();
+	$('#pub_date').datepicker();
+
 	// empty array for images from form
 	var images = [];
 
 	// handle client side file data
-	$('#up_file_path').on('click', function (e) {
+	$('#up_file_path').on('focus', function (e) {
 		e.preventDefault();
 	
 		iIn = document.getElementById('up_image'); 
@@ -115,6 +120,7 @@
 			$('#up_file_path').val(images[0].name);
 		});
 		
+		$(this).trigger('blur');
 		$imageInput.trigger('click');					
 	});
 
