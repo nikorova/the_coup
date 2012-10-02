@@ -2,7 +2,7 @@
 function selectAllEvents() {
 	include 'conn.php'; 
 
-	$sql = "SELECT title, description, pub_date, event_date, image_path FROM $mysqlEventsTable ";
+	$sql = "SELECT id, title, description, pub_date, event_date, image_path FROM $mysqlEventsTable ";
 
 	try {
 		$sth = $dbh->prepare($sql);
@@ -67,3 +67,6 @@ function generateMarkupFromEvents($events) {
 
 	return $eventsMarkup;
 }
+
+$res = selectAllEvents();
+exit(json_encode($res));
