@@ -36,7 +36,7 @@
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.js"><\/script>')</script>
 
 <script type="application/javascript" src="js/plugins.js"></script>
-<script type="application/javascript" src="js/panel.js"></script>
+<script type="application/javascript" src="js/main.js"></script>
 
 <div id="dev_splash">
 	<h3 class="highlight"> Welcome to the dev version of your fancy pants admin panel! </h3>
