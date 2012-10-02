@@ -40,8 +40,7 @@
 <div id="dev_splash">
 	<h3 class="highlight"> Welcome to the dev version of your fancy pants admin panel! </h3>
 	<p> This is by no means complete and is absolutely liable to change at any time. </p>
-	<p> Also please note that while the code handling the form is functional, it's <span class="highlight">not wired up</span> properly yet.
-	You're welcome to try uploading a file, but the php script handling the upload will just <span class="highlight">puke</span>. </p>
+	You're welcome to try uploading a file, as the php handling it <span class="highlight">should</span> totally work. </p>
 </div>
 
 <div id="wrapper" class="borderTrans .boxShadowBlack ">
