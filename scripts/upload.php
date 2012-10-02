@@ -96,6 +96,7 @@ if (move_uploaded_file($event["image_tmp_name"], $imagePath)) {
 	execSQLInsert($dbh, $row);
 
 	$getPath= "scripts/get_event.php/?id=" . $dbh->lastInsertId() ;
+
 	echo json_encode(array(
 		"id"			=> $dbh->lastInsertId(),
 		"title" 		=> $event["title"],

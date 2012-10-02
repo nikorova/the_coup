@@ -12,6 +12,7 @@ function getEvent($dbh, $eventID) {
 	}
 
 	$results = $sth->fetch(PDO::FETCH_ASSOC);
+
 	$dbh = null;
 
 	return $results;
