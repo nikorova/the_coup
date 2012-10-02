@@ -15,12 +15,9 @@
 <title> Coup Panel </title>
 <meta name="description" content="resource panel for The Coup - Clarksville, TN">
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
 <script type="application/javascript" src="js/vendor/modernizr-2.6.2.min.js"></script>
 
-<script type="application/javascript" src="js/plugins.js"></script>
-<script type="application/javascript" src="js/panel.js"></script>
 
 <link rel="stylesheet" href="style/panel.css">
 <link rel="stylesheet" type="text/css" media="all" href="css/main.css" />
@@ -35,8 +32,11 @@
 	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.js"><\/script>')</script>
+
+<script type="application/javascript" src="js/plugins.js"></script>
+<script type="application/javascript" src="js/panel.js"></script>
 
 <div id="dev_splash">
 	<h3 class="highlight"> Welcome to the dev version of your fancy pants admin panel! </h3>
@@ -91,11 +91,10 @@
 					required> </input>
 
 					<label class="up_label" for="up_image"> upload image </label>
-					<input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
-					<input name="image"
-					id="up_image"
-					type="file"
-					required />
+					<input class="hidden" type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+					<input id="up_image" type="file" name="image"  class="hidden" required />
+					<input id="up_file_path" class="input_field" type="text" required/>
+
 
 					<button id="#upload_submit" class="button" type="submit" >Submit </button>
 				</fieldset>
