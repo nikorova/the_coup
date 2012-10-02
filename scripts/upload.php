@@ -2,7 +2,11 @@
 
 require_once("params.ini.php");
 
-/* 
+function mysqlDate($dateString) {
+		return $mysqlDate = date('Y-m-d', strtotime($dateString));
+}
+
+/*** 
  * @Return assoc array of event params
  */
 function createEventFromPost() {
@@ -10,8 +14,8 @@ function createEventFromPost() {
 		return array(
 			"title" 			=> $_POST["title"],	
 			"description" 		=> $_POST["description"],
-			"pub_date" 			=> $_POST["pub_date"],
-			"event_date"		=> $_POST["event_date"],
+			"pub_date" 			=> mysqlDate($_POST["pub_date"]),
+			"event_date"		=> mysqlDate($_POST["event_date"]),
 			"image_name"		=> $_FILES["files"]["name"][0],
 			"image_tmp_name"	=> $_FILES["files"]["tmp_name"][0],
 			"image_size"		=> $_FILES["files"]["size"][0],
@@ -24,6 +28,11 @@ function createEventFromPost() {
 	}
 }
 
+/*** 
+ * @param Array $event
+ * @param string $imagePath
+ * @return Array $row as assoc array of placeholders => event vals 
+ */
 function createRowFromEvent($event, $imagePath) {
 	return $row = array (
 			":title" 			=> $event["title"],	
