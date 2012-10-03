@@ -44,6 +44,58 @@
 					console.log(message);
 				}
 			});
+
+			var todays = [], mub = null,
+				d = new Date();
+
+			// get the daily events from server and display
+			$.get('scripts/getByDate.php?date=' + d.toISOString().split('T')[0], 
+					function (data, stat, jqxhr) {
+						if (stat == 'success') {
+							if (data.length) {
+								$.each(data, function (_k, obj) {
+									todays.push(obj);	
+								});
+
+								for (i = 0; i < todays.length; i++) {
+									if (!mub) {
+										mub = EDB.build('panel', todays[i]);
+									} else {
+										mub += EDB.build('panel', todays[i]);
+									}
+									$('#eList').append(mub);
+								}
+							} else {
+								var nothingObj = {
+									title: 'Nothing for today', 
+									description: 'very exciting fun time',
+									pub_date: '',
+									event_date: '',
+									image_path: '',
+								};
+
+								todays.push(nothingObj);
+
+								for (i = 0; i < todays.length; i++) {
+									console.log('todays in loop: ', todays[i]);
+									if (!mub) {
+										mub = EDB.build('panel', todays[i]);
+									} else {
+										mub += EDB.build('panel', todays[i]);
+									}
+									console.log('mub ', mub);
+									$('#eList').append(mub);
+								}
+
+							}
+						} else {
+							var message = 'request status: ' + stat + ' jqXHR: ' + jqxhr;
+							console.log(message);
+						}
+					});
+
+
+			$('#upcoming_display').append(mub);
 		},
 
 		store: function (item) {
@@ -145,7 +197,7 @@
 			formData: upForm.serializeArray(),
 		});
 
-		$('.clean').val('');
+		document.getElementById('upload_event').reset();
 	});
 	
 	$(document).on('storage', function (e) {
