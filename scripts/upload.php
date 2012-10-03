@@ -1,6 +1,7 @@
 <?php
 
 require_once("params.ini.php");
+require_once("conn.php");
 
 function mysqlDate($dateString) {
 		return $mysqlDate = date('Y-m-d', strtotime($dateString));
@@ -68,15 +69,7 @@ function execSQLInsert($dbh, $data, $table='events') {
 	}		
 }
 
-/*
- * create new db connection
- */
-try {
-	$dbh = new PDO("mysql:host=$mysqlHost;dbname=$mysqlDB", $mysqlUser, $mysqlPass);
-	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-	echo "db connection failed: " . $e->getMessage();	
-}
+require_once("conn.php");
 
 /* 
  * create new event from post data 

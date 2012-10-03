@@ -1,27 +1,107 @@
 ;$(document).ready( function () {
+
+	EDB = {
+		build: function (type, item) {
+			if (type == 'panel') {
+					return "<a href=\"#\">"
+						+ "<li class=\"event\">"
+						+	  "<p class=\"e_name\">" + item.title
+						+		  "<span class=\"dates\">"
+						+			  "<span class=\"p_date\">" + item.pub_date + "</span>"
+						+			  "<span class=\"e_date\">" + item.event_date + "</span>"
+						+		  "</span>"
+						+	  "</p>" 
+						+	  "<img class=\"e_image\" src=\"" + item.image_path + "\" ></img>"
+						+	  "<p class=\"desc\">" + item.description + "</p>"
+						+ "</li>"
+						+ "</a>";
+			}
+
+			if (type == 'frontpage' ) {
+
+			}
+		},
+	};
+
 	EventStore = {
 		Bag: window.sessionStorage,
 
 		init: function (getScript) {
-			var response = $.get(getScript, function (data, stat, jqxhr) {
+			// get events from server and store
+			$.get(getScript, function (data, stat, jqxhr) {
 				if (stat == 'success') {
+					// hydrate json returned by server
 					var dataObjs = JSON.parse(data);
 
+					// populate event store
 					$.each(dataObjs, function (k,v) {
 						EventStore.store(v);
 					});
+
 				} else {
 					var message = 'request status: ' + stat + 'jqXHR: '
 					+ jqxhr;
 					console.log(message);
 				}
 			});
+
+			var todays = [], mub = null,
+				d = new Date();
+
+			// get the daily events from server and display
+			$.get('scripts/getByDate.php?date=' + d.toISOString().split('T')[0], 
+					function (data, stat, jqxhr) {
+						if (stat == 'success') {
+							if (data.length) {
+								$.each(data, function (_k, obj) {
+									todays.push(obj);	
+								});
+
+								for (i = 0; i < todays.length; i++) {
+									if (!mub) {
+										mub = EDB.build('panel', todays[i]);
+									} else {
+										mub += EDB.build('panel', todays[i]);
+									}
+									$('#eList').append(mub);
+								}
+							} else {
+								var nothingObj = {
+									title: 'Nothing for today', 
+									description: 'very exciting fun time',
+									pub_date: '',
+									event_date: '',
+									image_path: '',
+								};
+
+								todays.push(nothingObj);
+
+								for (i = 0; i < todays.length; i++) {
+									console.log('todays in loop: ', todays[i]);
+									if (!mub) {
+										mub = EDB.build('panel', todays[i]);
+									} else {
+										mub += EDB.build('panel', todays[i]);
+									}
+									console.log('mub ', mub);
+									$('#eList').append(mub);
+								}
+
+							}
+						} else {
+							var message = 'request status: ' + stat + ' jqXHR: ' + jqxhr;
+							console.log(message);
+						}
+					});
+
+
+			$('#upcoming_display').append(mub);
 		},
 
 		store: function (item) {
 			if (this.Bag.getItem('Event:' + item.id)) {
 				var message = 'event ' + item.id + ' already in store';
-		//		console.log(message); 
+				console.log(message); 
 			} else {
 				this.Bag.setItem('Event:' + item.id, JSON.stringify(item));
 				this.Bag.setItem('Event:index', this.Bag.length);
@@ -50,31 +130,14 @@
 		}, 
 
 		clear: function () {
-
-		}
-	};
-
-	EDB = {
-		build: function (type, item) {
-			if (type == 'panel') {
-					return "<a href=\"#\">"
-						+ "<li class=\"event\">"
-						+	  "<p class=\"e_name\">" + item.title
-						+		  "<span class=\"dates\">"
-						+			  "<span class=\"p_date\">" + item.pub_date + "</span>"
-						+			  "<span class=\"e_date\">" + item.event_date + "</span>"
-						+		  "</span>"
-						+	  "</p>" 
-						+	  "<img class=\"e_image\" src=\"" + item.image_path + "\" ></img>"
-						+	  "<p class=\"desc\">" + item.description + "</p>"
-						+ "</li>"
-						+ "</a>";
-			}
-
-			if (type == 'frontpage' ) {
-
-			}
+			if (confirm('clear event store? for real?')) {
+				this.Bag.clear();
+			};
 		},
+
+		length: function () {
+			return this.Bag.length;
+		}
 	};
 
 	// init Event Store
@@ -133,13 +196,13 @@
 			files: images,
 			formData: upForm.serializeArray(),
 		});
+
+		document.getElementById('upload_event').reset();
 	});
 	
 	$(document).on('storage', function (e) {
 		console.log(e);
 	});
-
-
 });
 
 // later
