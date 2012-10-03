@@ -66,33 +66,34 @@
 					<label class="up_label" for="title"> title </label>
 					<input name="title"
 					id="title"
-					class="input_field"
+					class="clean input_field"
 					type="text"
 					required> </input>
 
-					<label class="up_label" for="description"> event description </label>
+					<label class="clean up_label" for="description"> event description </label>
 					<textarea name="description"
+						class="clean"
 						id="description"
 						requied> </textarea> 
 
-					<label class="up_label" for="pub_date"> publication date </label> 
+					<label class="clean up_label" for="pub_date"> publication date </label> 
 					<input name="pub_date"
 					id="pub_date"
-					class="input_field"
+					class="clean input_field"
 					type="date"
 					required> </input>
 
-					<label class="up_label" for="event_date"> event date </label>
+					<label class="clean up_label" for="event_date"> event date </label>
 					<input name="event_date"
 					id="event_date"
-					class="input_field"
+					class="clean input_field"
 					type="date"
 					required> </input>
 
-					<label class="up_label" for="up_image"> upload image </label>
-					<input class="hidden" type="hidden" name="MAX_FILE_SIZE" value="3000000" />
-					<input id="up_image" type="file" name="image"  class="hidden" required />
-					<input id="up_file_path" class="input_field" type="text" required/>
+					<label class="clean up_label" for="up_image"> upload image </label>
+					<input class="clean hidden" type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+					<input id="up_image" type="file" name="image"  class="clean hidden" required />
+					<input id="up_file_path" class="clean input_field" type="text" required/>
 
 
 					<button id="#upload_submit" class="button" type="submit" >Submit </button>
@@ -116,201 +117,6 @@
 
 </div>
 
-<!--
-<script type="application/javascript"> 
-/*
-;$(document).ready(function (e) {
-	var uploadScript = 'scripts/upload.php';
-	var getScript = 'scripts/load_upcoming_events.php';
-
-	// event manager
-	// * manages collection of events
-	// * * get events from server & add to collection
-	// * * get event from form & send to server/add to collection
-	// * * delete from collection & send delect request to server
-	// * * edit by id & send update request
-	// * publish updates to observers
-	// * listen to events from ui for update
-
-	EMan = (function () {
-		var getScript = 'scripts/load_upcoming_events.php';
-		var uploadScript = 'scripts/upload.php';
-
-		// event store using session storage
-		// sessionStorage object accepts key,val pairs and caches them
-		// key will be a string, val will be an obj
-		//
-		// don't forget to reconstitue the objects upon retrieval,
-		//   as they are stringified when set
-		var eventBag = window.sessionStorage;
-
-		function create (key, obj) {
-			if (eventBag.getItem(key)) {
-				console.log('event object at ', key, ' already exists.');	
-			} else {
-				eventBag.setItem(key, obj);
-			}
-		}
-		
-		function read (id) {
-			var eventItem = eventBag.getItem(id);
-
-			if (eventItem) {
-				return eventItem;
-			} else {
-				console.log('no event by id: ',id);
-			}
-		}
-
-		function update (id) {
-
-		}
-
-		function del (id) {
-			if (eventBag.getItem(id)) {
-				eventBag.removeItem(id);
-				console.log('removed event: ', id);
-			} else {
-				console.log('no event by id: ', id);
-			}
-		}
-
-		// get's current collection of events from server as json string
-		// re-hydrates them and passes them to create() as id, obj
-		function fetchFromServer () {
-			var response = $.get(getScript, function (data, stat, jqxhr) {
-				if (stat == 'success') {
-					var dataObjs = JSON.parse(data);
-
-					console.log('received: ', data.length);
-
-					// $.each() passes k,v to callback, k is unused 
-					$.each(dataObjs, function(k, v) {
-						create(v.id, v);
-					});
-				} else {
-					var message = 'GET to server reports: ' + stat 
-						+ 'jqxhr to follow: ' + jqxhr;
-					console.log(message);
-				}
-			});
-		}
-
-		// API
-		return {
-			// fire this puppy up
-			init: function () {
-				fetchFromServer();
-			}, 
-
-			// returns event object
-			getEventByID: function (id) {
-				return JSON.parse(read(id));
-			},
-
-			// remove obj from Bag
-			deleteEventByID: function (id) {
-				del(id);
-			},
-
-			// update obj with new data
-			updateEvent: function (id, newData) {
-				
-			}
-		}
-	}) ();
-
-	// this guy's job is to build markup from objects
-	Builder = (function () {
-/*
-		var panelEvent = {
-			'elem': '<li />',
-				'class': 'event',
-				'child': {
-					'elem': '<p />',
-					'class': 'e_name',
-					'html': eventItem.title,
-					'child': {
-						'elem': '<span />',
-						'class': 'dates',
-						'child': {
-							'elem': '<span />',
-							'class': 'p_date',
-							'html': eventItem.pubDate,
-						},
-						'child': {
-							'elem': '<span />',
-							'class': 'e_date',
-							'html': eventItem.eventDate,
-						}	
-					}
-					'child': {
-						'elem': '<img />',
-						'class': 'e_image',
-						'attr': {
-							'src': eventItem.imagePath
-						}
-					}
-					'child': {
-						'elem': '<p />',
-						'class': 'desc',
-						'html': eventItem.description
-					}
-				}
-			};
-
-		var panelWidget = [{
-			'li': {
-				'class': 'event',
-			},
-			'p': {
-				'class': 'e_name',
-			},
-			'span': {
-				'class': 'dates'
-			},
-			'span': {
-				'class': 'p_date'
-			},
-			'span': {
-				'class': 'e_date'
-			},
-			'img': {
-				'class': 'e_image',
-				'attr': 'src',
-			}
-		}];
-
-		var panelEvent = $('<li />') .addClass('event')
-			.append($('<p />') .addClass('e_name') .html(eventItem.title)
-			.append($('<span />').addClass('dates')
-			.append($('<span />').addClass('p_date')
-			.append($('<span />').addClass('e_date')
-			.append($('<img />').addClass('e_image').attr('src', eventItem.imagePath)
-			.append($('<p />').addClass('desc').html(eventItem.description);
-
-
-		function createEventMarkup(template, eventObj) {
-			if (type == 'panel') {
-				
-			} else if (type == 'front_page') {
-
-			}
-
-		}
-			
-		return {
-			createDiv: function (type, eventObj) {
-			}	
-			},
-		}
-	}) ();
-	
-	EMan.init();
-});
- */
-</script>
--->
 
 </body>
 

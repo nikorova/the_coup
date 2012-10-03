@@ -2,7 +2,7 @@
 function selectAllEvents() {
 	include 'conn.php'; 
 
-	$sql = "SELECT id, title, description, pub_date, event_date, image_path FROM $mysqlEventsTable ";
+	$sql = "SELECT id, title, description, pub_date, event_date, image_path FROM $mysqlEventsTable  ORDER BY event_date";
 
 	try {
 		$sth = $dbh->prepare($sql);
