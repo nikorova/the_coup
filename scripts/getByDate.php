@@ -30,8 +30,14 @@ function getByDate($date) {
 
 $query = $_GET["date"];
 
-$response = getByDate($query);
+$result= getByDate($query);
+
+foreach ($result as $item) {
+	$item["image_path"] = 'scripts/get_event.php?id=' . $item["id"];
+	$resp[] = $item;
+}
 header("Content-Type: text/json");
-echo json_encode($response);
+
+echo json_encode($resp);
 exit();
 
