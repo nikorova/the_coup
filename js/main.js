@@ -7,7 +7,7 @@
 						+ "<li class=\"event\">"
 						+	  "<p class=\"e_name\">" + item.title
 						+		  "<span class=\"dates\">"
-						+			  "<span class=\"p_date\">" + item.pub_date + "</span>"
+						+			  "<span class=\"p_date\">pub: " + item.pub_date + "</span>"
 						+			  "<span class=\"e_date\">" + item.event_date + "</span>"
 						+		  "</span>"
 						+	  "</p>" 
