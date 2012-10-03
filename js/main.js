@@ -36,29 +36,6 @@
 					$.each(dataObjs, function (k,v) {
 						EventStore.store(v);
 					});
-					
-					
-					// populate soonest occuring events to upcoming display 
-					var nearest = [],
-						date = new Date();
-					
-					for (i = 0; i < 3 ; i++) {
-						$.each(EventStore.Bag, function (index, eventItem) {
-							if (i > 0) {
-
-							} else {
-								nearest[i] = date.toISOString(eventItem.event_date) > date.toISOString(nearest.even_date) ? 
-									eventItem : nearest[i];
-
-							}
-						});
-
-						var item = EDB.build('panel', );
-						$('#upcoming_display').prepend(item);
-
-					}
-
-
 				} else {
 					var message = 'request status: ' + stat + 'jqXHR: '
 					+ jqxhr;
@@ -99,7 +76,9 @@
 		}, 
 
 		clear: function () {
-
+			if (confirm('clear event store? for real?')) {
+				this.Bag.clear();
+			};
 		},
 
 		length: function () {
@@ -170,8 +149,6 @@
 	$(document).on('storage', function (e) {
 		console.log(e);
 	});
-
-
 });
 
 // later
