@@ -27,7 +27,8 @@
 		Bag: window.sessionStorage,
 
 		init: function (getScript) {
-			var response = $.get(getScript, function (data, stat, jqxhr) {
+			// get events from server and store
+			$.get(getScript, function (data, stat, jqxhr) {
 				if (stat == 'success') {
 					// hydrate json returned by server
 					var dataObjs = JSON.parse(data);
@@ -36,6 +37,7 @@
 					$.each(dataObjs, function (k,v) {
 						EventStore.store(v);
 					});
+
 				} else {
 					var message = 'request status: ' + stat + 'jqXHR: '
 					+ jqxhr;
@@ -47,7 +49,7 @@
 		store: function (item) {
 			if (this.Bag.getItem('Event:' + item.id)) {
 				var message = 'event ' + item.id + ' already in store';
-		//		console.log(message); 
+				console.log(message); 
 			} else {
 				this.Bag.setItem('Event:' + item.id, JSON.stringify(item));
 				this.Bag.setItem('Event:index', this.Bag.length);
