@@ -3,12 +3,19 @@
 	EDB = {
 		build: function (type, item) {
 			if (type == 'panel') {
+				var eds = new Date(item.event_date);
+				var seds = eds.toDateString().split(' ');	
+				var feds = seds[0] + ' ' + seds[2] + ' ' + seds[1] + '' + seds[3];
+
+				var pds = new Date(item.event_date);
+				var spds = pds.toDateString().split(' ');	
+				var fpds = spds[2] + ' ' + spds[1] + '' + spds[3];
 					return "<a href=\"#\">"
 						+ "<li class=\"event\">"
 						+	  "<p class=\"e_name\">" + item.title
 						+		  "<span class=\"dates\">"
-						+			  "<span class=\"p_date\">" + item.pub_date + "</span>"
-						+			  "<span class=\"e_date\">" + item.event_date + "</span>"
+						+			  "<span class=\"p_date\">pub. " + fpds  + "</span>"
+						+			  "<span class=\"e_date\">" + feds + "</span>"
 						+		  "</span>"
 						+	  "</p>" 
 						+	  "<img class=\"e_image\" src=\"" + item.image_path + "\" ></img>"

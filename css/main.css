@@ -97,10 +97,10 @@ nav {
 	float: right; 
 
 	background-color: 	rgb(38, 41, 50);
-	background: 	       linear-gradient(top, right, rgb(38, 41, 50), rgb(61, 65, 73));
-	background: 	    -o-linear-gradient(top, right, rgb(38, 41, 50), rgb(61, 65, 73));
-	background: 	  -moz-linear-gradient(top, right, rgb(38, 41, 50), rgb(61, 65, 73));
-	background:    -webkit-linear-gradient(top, right, rgb(38, 41, 50), rgb(61, 65, 73));
+	background: 	       linear-gradient(top, rgb(38, 41, 50), rgb(61, 65, 73));
+	background: 	    -o-linear-gradient(top, rgb(38, 41, 50), rgb(61, 65, 73));
+	background: 	  -moz-linear-gradient(top, rgb(38, 41, 50), rgb(61, 65, 73));
+	background:    -webkit-linear-gradient(top, rgb(38, 41, 50), rgb(61, 65, 73));
 
 	color: rgb(221, 221, 234);
 	border: 1px solid #595F70;
@@ -132,10 +132,10 @@ nav {
 
 	border: 1px solid #595F70;
 	background-color: 	rgb(38, 41, 50);
-	background: 	       linear-gradient(top, right, rgb(38, 41, 50), rgb(61, 65, 73));
-	background: 	    -o-linear-gradient(top, right, rgb(38, 41, 50), rgb(61, 65, 73));
-	background: 	  -moz-linear-gradient(top, right, rgb(38, 41, 50), rgb(61, 65, 73));
-	background:    -webkit-linear-gradient(top, right, rgb(38, 41, 50), rgb(61, 65, 73));
+	background: 	       linear-gradient(top, rgb(38, 41, 50), rgb(61, 65, 73));
+	background: 	    -o-linear-gradient(top, rgb(38, 41, 50), rgb(61, 65, 73));
+	background: 	  -moz-linear-gradient(top, rgb(38, 41, 50), rgb(61, 65, 73));
+	background:    -webkit-linear-gradient(top, rgb(38, 41, 50), rgb(61, 65, 73));
 }
 
 #upload_event fieldset {
@@ -251,10 +251,10 @@ nav {
 	border: 1px solid rgb(115,178,198); 
 
 	background: 	rgb(6, 84, 110);
-	background: 	       linear-gradient(top, right, rgb(6,84,110), rgb(32,130,163));
-	background: 	    -o-linear-gradient(top, right, rgb(6,84,110), rgb(32,130,163));
-	background: 	  -moz-linear-gradient(top, right, rgb(6,84,110), rgb(32,130,163));
-	background:    -webkit-linear-gradient(top, right, rgb(6,84,110), rgb(32,130,163));
+	background: 	       linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
+	background: 	    -o-linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
+	background: 	  -moz-linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
+	background:    -webkit-linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
 
 	list-style: none;
 }
@@ -292,5 +292,5 @@ nav {
 	color: rgb(221, 221, 234);
 	font-size: 14px;
 	font-style: italic;
-	margin: 0px 5px 0px 0px;
+	margin: 0px 10px 0px 0px;
 }
