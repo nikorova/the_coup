@@ -3,14 +3,14 @@
 	EDB = {
 		build: function (type, item) {
 			if (type == 'panel') {
-				var eds = new Date(item.event_date.toString());
+				var date = item.event_date.split('-');
+				var eds = new Date(date[1] + ' ' + date[2] + ' ' + date[0]);
 				var seds = eds.toDateString().split(' ');	
 				var feds = seds[0] + ' ' + seds[2] + ' ' + seds[1] + '' + seds[3];
 
-				console.log('eds: ', eds);
-				console.log('event_date: ', item.event_date.toString());
 
-				var pds = new Date(item.pub_date);
+				var date = item.pub_date.split('-');
+				var pds = new Date(date[1] + ' ' + date[2] + ' ' + date[0]);
 				var spds = pds.toDateString().split(' ');	
 				var fpds = spds[2] + ' ' + spds[1] + '' + spds[3];
 					return "<a href=\"#\">"
@@ -92,6 +92,8 @@
 			// hit that mysql date format, son
 			sd = d.toString().split(' ');
 			fd = sd[3] + '-' + months[sd[1]] + '-' + sd[2];
+
+			console.log('fd: ',fd);
 
 			// get the daily events from server and display
 			$.get('scripts/getByDate.php?date=' + fd, 
