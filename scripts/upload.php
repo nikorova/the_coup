@@ -1,6 +1,5 @@
 <?php
 
-require_once("params.ini.php");
 require_once("conn.php");
 
 function mysqlDate($dateString) {
@@ -69,7 +68,6 @@ function execSQLInsert($dbh, $data, $table='events') {
 	}		
 }
 
-require_once("conn.php");
 
 /* 
  * create new event from post data 

@@ -3,11 +3,14 @@
 	EDB = {
 		build: function (type, item) {
 			if (type == 'panel') {
-				var eds = new Date(item.event_date);
+				var eds = new Date(item.event_date.toString());
 				var seds = eds.toDateString().split(' ');	
 				var feds = seds[0] + ' ' + seds[2] + ' ' + seds[1] + '' + seds[3];
 
-				var pds = new Date(item.event_date);
+				console.log('eds: ', eds);
+				console.log('event_date: ', item.event_date.toString());
+
+				var pds = new Date(item.pub_date);
 				var spds = pds.toDateString().split(' ');	
 				var fpds = spds[2] + ' ' + spds[1] + '' + spds[3];
 					return "<a href=\"#\">"
