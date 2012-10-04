@@ -32,6 +32,7 @@ $query = $_GET["date"];
 
 $result= getByDate($query);
 
+$resp = [];
 foreach ($result as $item) {
 	$item["image_path"] = 'scripts/get_event.php?id=' . $item["id"];
 	$resp[] = $item;
