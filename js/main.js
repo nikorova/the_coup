@@ -73,12 +73,14 @@
 									$('#eList').append(mub);
 								}
 							} else {
+								var d = new Date().toISOString().split('T')[0];
+
 								var nothingObj = {
 									title: 'Nothing for today', 
 									description: 'very exciting fun time',
-									pub_date: '',
-									event_date: '',
-									image_path: '',
+									pub_date: d, 
+									event_date: d,
+									image_path: 'static/testPatternRetroSmall.jpg',
 								};
 
 								todays.push(nothingObj);
@@ -211,5 +213,3 @@
 		console.log(e);
 	});
 });
-
-// later
