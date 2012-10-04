@@ -52,11 +52,46 @@
 				}
 			});
 
+			// event collection, markup blob, date object, split and 
+			// formatted date
 			var todays = [], mub = null,
-				d = new Date();
+				d = new Date(), 
+				sd = null,
+				fd = null;
+
+			// months reference for formatting
+			var months = {
+				'January':		'01',
+				'Jan':			'01',
+				'February':		'02',
+				'Feb':			'02',
+				'March':		'03',
+				'Mar':			'03',
+				'April':		'04',
+				'Apr':			'04',
+				'May':			'05',
+				'June':			'06',
+				'Jun':			'06',
+				'July':			'07',
+				'Jul':			'07',
+				'August':		'08',
+				'Aug':			'08',
+				'September':	'09',
+				'Sept':			'09',
+				'October':		'10',
+				'Oct':			'10',
+				'November':		'11',
+				'Nov':			'11',
+				'December':		'12',
+				'Dec':			'12'
+			};
+
+			// hit that mysql date format, son
+			sd = d.toString().split(' ');
+			fd = sd[3] + '-' + months[sd[1]] + '-' + sd[2];
 
 			// get the daily events from server and display
-			$.get('scripts/getByDate.php?date=' + d.toISOString().split('T')[0], 
+			$.get('scripts/getByDate.php?date=' + fd, 
 					function (data, stat, jqxhr) {
 						if (stat == 'success') {
 							if (data.length) {
@@ -70,16 +105,14 @@
 									} else {
 										mub += EDB.build('panel', todays[i]);
 									}
-									$('#eList').append(mub);
+									$('#eList').html(mub);
 								}
 							} else {
-								var d = new Date().toISOString().split('T')[0];
-
 								var nothingObj = {
 									title: 'Nothing for today', 
 									description: 'very exciting fun time',
-									pub_date: d, 
-									event_date: d,
+									pub_date: fd, 
+									event_date: fd,
 									image_path: 'static/testPatternRetroSmall.jpg',
 								};
 
