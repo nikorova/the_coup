@@ -13,18 +13,19 @@
 				var pds = new Date(date[1] + ' ' + date[2] + ' ' + date[0]);
 				var spds = pds.toDateString().split(' ');	
 				var fpds = spds[2] + ' ' + spds[1] + '' + spds[3];
-					return "<a href=\"#\">"
-						+ "<li class=\"event\">"
-						+	  "<p class=\"e_name\">" + item.title
-						+		  "<span class=\"dates\">"
-						+			  "<span class=\"p_date\">pub. " + fpds  + "</span>"
-						+			  "<span class=\"e_date\">" + feds + "</span>"
-						+		  "</span>"
-						+	  "</p>" 
-						+	  "<img class=\"e_image\" src=\"" + item.image_path + "\" ></img>"
-						+	  "<p class=\"desc\">" + item.description + "</p>"
-						+ "</li>"
-						+ "</a>";
+
+				return "<a href=\"#\">"
+					+ "<li class=\"event\">"
+					+	  "<p class=\"e_name\">" + item.title
+					+		  "<span class=\"dates\">"
+					+			  "<span class=\"p_date\">pub. " + fpds  + "</span>"
+					+			  "<span class=\"e_date\">" + feds + "</span>"
+					+		  "</span>"
+					+	  "</p>" 
+					+	  "<img class=\"e_image\" src=\"" + item.image_path + "\" ></img>"
+					+	  "<p class=\"desc\">" + item.description + "</p>"
+					+ "</li>"
+					+ "</a>";
 			}
 
 			if (type == 'frontpage' ) {
