@@ -1,4 +1,8 @@
 ;$(document).ready( function () {
+	// cache selectors
+	var upForm = $('#upload_event'), 
+		$eventDisplay = $('#eList'),
+		$imageInput = $('#up_image');
 
 	EDB = {
 		build: function (type, item) {
@@ -14,8 +18,7 @@
 				var spds = pds.toDateString().split(' ');	
 				var fpds = spds[2] + ' ' + spds[1] + '' + spds[3];
 
-				return "<a href=\"#\" data-event-id=" + item.id + ">"
-					+ "<li class=\"event\" >"
+				return "<li class=\"event\" data-event-id=" + item.id + ">"
 					+	  "<div class=\"e_name inline\">" + item.title + "</div>"
 					+		  "<div class=\"dates inline\">"
 					+			  "<div class=\"e_date\">pub. " + fpds  + "</div>"
@@ -24,8 +27,7 @@
 					+	  "<div class=\"clear\"></div>" 
 					+	  "<img class=\"e_image\" src=\"" + item.image_path + "\" />"
 					+	  "<p class=\"desc\">" + item.description + "</p>"
-					+ "</li>"
-					+ "</a>";
+					+ "</li>";
 			}
 
 			if (type == 'frontpage' ) {
@@ -35,27 +37,7 @@
 	};
 
 	EventStore = {
-		Bag: window.sessionStorage,
-
 		init: function (getScript) {
-			// get events from server and store
-			$.get(getScript, function (data, stat, jqxhr) {
-				if (stat == 'success') {
-					// hydrate json returned by server
-					var dataObjs = JSON.parse(data);
-
-					// populate event store
-					$.each(dataObjs, function (k,v) {
-						EventStore.store(v);
-					});
-
-				} else {
-					var message = 'request status: ' + stat + 'jqXHR: '
-					+ jqxhr;
-					console.log(message);
-				}
-			});
-
 			// event collection, markup blob, date object, split and 
 			// formatted date
 			var todays = [], mub = null,
@@ -93,8 +75,6 @@
 			// hit that mysql date format, son
 			sd = d.toString().split(' ');
 			fd = sd[3] + '-' + months[sd[1]] + '-' + sd[2];
-
-			console.log('fd: ',fd);
 
 			// get the daily events from server and display
 			$.get('scripts/getByDate.php?date=' + fd, 
@@ -142,49 +122,28 @@
 							console.log(message);
 						}
 					});
-			$('#upcoming_display').append(mub);
-		},
+			$eventDisplay.append(mub);
 
-		store: function (item) {
-			if (this.Bag.getItem('Event:' + item.id)) {
-				var message = 'event ' + item.id + ' already in store';
-				console.log(message); 
-			} else {
-				this.Bag.setItem('Event:' + item.id, JSON.stringify(item));
-				this.Bag.setItem('Event:index', this.Bag.length);
-			}
+
+
+			// set remove handler for events on display
+			$eventDisplay.on('click', '.event', function (e) {
+				var name = $(e.target).find('.e_name').html();	
+
+				if (confirm('delete event ' + name + '?')) {
+					$(e.target).remove();
+				}
+			});
 		},
 
 		edit: function (item) {
 
 		},
 
-		get: function (id) {
-			if (item = this.Bag.getItem('Event:' + id)) {
-				return item;		
-			} else {
-				console.log('event not in store');
-				return null;
-			}
-		},
 
 		remove: function (item) {
-			if (!this.Bag.getItem('Event:' + item.id)) {
-				console.log('event not in store');	
-			} else {
-				this.Bag.removeItem('Event:' + item.id);
-			}
+
 		}, 
-
-		clear: function () {
-			if (confirm('clear event store? for real?')) {
-				this.Bag.clear();
-			};
-		},
-
-		length: function () {
-			return this.Bag.length;
-		}
 	};
 
 	// init Event Store
@@ -194,10 +153,6 @@
 	if (window.File &&  window.FileList){
 	} else { alert('browser does not support needed File API\'s'); }
 
-	// cache selectors
-	var upForm = $('#upload_event'), 
-		$eventDisplay = $('#eList'),
-		$imageInput = $('#up_image');
 
 	// fileupload plugin init
 	upForm.fileupload({
@@ -208,7 +163,6 @@
 
 	// bind storage callback to fileupload done event 
 	upForm.bind('fileuploaddone', function (e, data) {
-		EventStore.store(data.result);
 		var nothingEvent = $eventDisplay.find('a[data-event-id="nothing"]');
 		if (nothingEvent) {
 			nothingEvent.remove();
