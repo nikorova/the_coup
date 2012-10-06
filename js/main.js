@@ -15,7 +15,7 @@
 				var fpds = spds[2] + ' ' + spds[1] + '' + spds[3];
 
 				return "<a href=\"#\">"
-					+ "<li class=\"event\">"
+					+ "<li class=\"event\" data-event-id=" + item.id + ">"
 					+	  "<div class=\"e_name inline\">" + item.title + "</div>"
 					+		  "<div class=\"dates inline\">"
 					+			  "<div class=\"e_date\">pub. " + fpds  + "</div>"
@@ -115,6 +115,7 @@
 								}
 							} else {
 								var nothingObj = {
+									id: 'nothing',
 									title: 'Nothing for today', 
 									description: 'very exciting fun time',
 									pub_date: fd, 
@@ -141,8 +142,6 @@
 							console.log(message);
 						}
 					});
-
-
 			$('#upcoming_display').append(mub);
 		},
 
