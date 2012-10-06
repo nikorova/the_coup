@@ -19,6 +19,7 @@
 				var fpds = spds[2] + ' ' + spds[1] + '' + spds[3];
 
 				return "<li class=\"event\" data-event-id=" + item.id + ">"
+					+ 	"<div class=\"del_button hidden\"> DELETE ME </div>"
 					+	  "<div class=\"e_name inline\">" + item.title + "</div>"
 					+		  "<div class=\"dates inline\">"
 					+			  "<div class=\"e_date\">pub. " + fpds  + "</div>"
@@ -124,6 +125,19 @@
 					});
 			$eventDisplay.append(mub);
 
+
+			$eventDisplay.on('mouseenter', 'li.event', function (e) {
+				var target = $(e.target),
+
+				target.css('opacity', '0.8')
+					.find(".del_button").show();
+			
+			}).on('mouseleave', 'li.event', function (e) {
+				var target = $(e.target);
+
+				target.css('opacity', '1')
+					.find(".del_button").hide();
+			});
 
 
 			// set remove handler for events on display
