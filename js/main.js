@@ -131,9 +131,11 @@
 			// set remove handler for events on display
 			$eventDisplay.on('click', 'li.event .del_btn', function (e) {
 				var target = $(e.target),
-				$this = $(this),	
+				$this = $(this).parents('li.event'),	
 				name = $this.find('.e_name').html(),
 				id = $this.attr('data-event-id');
+
+				console.info($this);
 
 				if (confirm('delete event ' + name + '?')) {
 					$.get('scripts/deleteEvent.php?id=' + id, function () {
