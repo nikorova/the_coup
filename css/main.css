@@ -269,7 +269,7 @@ nav {
 	list-style: none;
 }
 
-.del_button {
+.context_btn {
 	width: 525px;
 	min-height: 130px;
 	line-height: 130px;
@@ -279,6 +279,9 @@ nav {
 	z-index: 1;
 }
 
+.edit_btn:hover, .del_btn:hover {
+	border-bottom: 3px solid black;	
+}
 .e_image {
 	width: 105px;
 	height: 72px;

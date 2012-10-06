@@ -19,8 +19,10 @@
 				var fpds = spds[2] + ' ' + spds[1] + '' + spds[3];
 
 				return "<li class=\"event\" data-event-id=" + item.id + ">"
-					+ 	"<div class=\"del_button hidden\"> DELETE ME </div>"
-					+	  "<div class=\"e_name inline\">" + item.title + "</div>"
+					+ 	'<div class=\"context_btn hidden\">'
+					+ 		'<span class="del_btn">DELETE</span> | '
+					+ 		'<span class="edit_btn">EDIT</span></div>'
+					+	  '<div class=\"e_name inline\">' + item.title + '</div>'
 					+		  "<div class=\"dates inline\">"
 					+			  "<div class=\"e_date\">pub. " + fpds  + "</div>"
 					+			  "<div class=\"p_date\">" + feds + "</div>"
@@ -116,18 +118,18 @@
 				var $this = $(this);
 
 				$this.css('opacity', '0.8')
-					.find(".del_button").removeClass('hidden');
+					.find(".context_btn").removeClass('hidden');
 			
 			}).on('mouseleave', 'li.event', function (e) {
 				var $this= $(this);
 
 				$this.css('opacity', '1')
-					.find(".del_button").addClass('hidden');
+					.find(".context_btn").addClass('hidden');
 			});
 
 
 			// set remove handler for events on display
-			$eventDisplay.on('click', 'li.event', function (e) {
+			$eventDisplay.on('click', 'li.event .del_btn', function (e) {
 				var target = $(e.target),
 				$this = $(this),	
 				name = $this.find('.e_name').html(),
@@ -159,7 +161,6 @@
 	} else { alert('browser does not support needed File API\'s.' 
 			+ 'please use a modern browser like a goddamn human being.'); 
 	}
-
 
 	// fileupload plugin init
 	upForm.fileupload({
