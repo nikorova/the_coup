@@ -269,6 +269,16 @@ nav {
 	list-style: none;
 }
 
+.del_button {
+	width: 525px;
+	min-height: 130px;
+	line-height: 130px;
+	text-align: center;
+	font-size: 40px;
+	position: absolute;
+	z-index: 1;
+}
+
 .e_image {
 	width: 105px;
 	height: 72px;

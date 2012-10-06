@@ -127,16 +127,16 @@
 
 
 			$eventDisplay.on('mouseenter', 'li.event', function (e) {
-				var target = $(e.target),
+				var target = $(e.target);
 
 				target.css('opacity', '0.8')
-					.find(".del_button").show();
+					.find(".del_button").removeClass('hidden');
 			
 			}).on('mouseleave', 'li.event', function (e) {
 				var target = $(e.target);
 
 				target.css('opacity', '1')
-					.find(".del_button").hide();
+					.find(".del_button").addClass('hidden');
 			});
 
 
