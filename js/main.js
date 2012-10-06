@@ -127,25 +127,30 @@
 
 
 			$eventDisplay.on('mouseenter', 'li.event', function (e) {
-				var target = $(e.target);
+				var $this = $(this);
 
-				target.css('opacity', '0.8')
+				$this.css('opacity', '0.8')
 					.find(".del_button").removeClass('hidden');
 			
 			}).on('mouseleave', 'li.event', function (e) {
-				var target = $(e.target);
+				var $this= $(this);
 
-				target.css('opacity', '1')
+				$this.css('opacity', '1')
 					.find(".del_button").addClass('hidden');
 			});
 
 
 			// set remove handler for events on display
-			$eventDisplay.on('click', '.event', function (e) {
-				var name = $(e.target).find('.e_name').html();	
+			$eventDisplay.on('click', 'li.event', function (e) {
+				var target = $(e.target),
+				$this = $(this),	
+				name = $this.find('.e_name').html(),
+				id = $this.attr('data-event-id');
 
 				if (confirm('delete event ' + name + '?')) {
-					$(e.target).remove();
+					$.get('scripts/deleteEvent.php?id=' + id, function () {
+						$this.remove();
+					});
 				}
 			});
 		},
