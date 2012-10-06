@@ -14,8 +14,8 @@
 				var spds = pds.toDateString().split(' ');	
 				var fpds = spds[2] + ' ' + spds[1] + '' + spds[3];
 
-				return "<a href=\"#\">"
-					+ "<li class=\"event\" data-event-id=" + item.id + ">"
+				return "<a href=\"#\" data-event-id=" + item.id + ">"
+					+ "<li class=\"event\" >"
 					+	  "<div class=\"e_name inline\">" + item.title + "</div>"
 					+		  "<div class=\"dates inline\">"
 					+			  "<div class=\"e_date\">pub. " + fpds  + "</div>"
@@ -196,6 +196,7 @@
 
 	// cache selectors
 	var upForm = $('#upload_event'), 
+		$eventDisplay = $('#eList'),
 		$imageInput = $('#up_image');
 
 	// fileupload plugin init
@@ -208,8 +209,12 @@
 	// bind storage callback to fileupload done event 
 	upForm.bind('fileuploaddone', function (e, data) {
 		EventStore.store(data.result);
+		var nothingEvent = $eventDisplay.find('a[data-event-id="nothing"]');
+		if (nothingEvent) {
+			nothingEvent.remove();
+		}
 
-		$('#upcoming_display').append(EDB.build('panel', data.result));
+		$eventDisplay.append(EDB.build('panel', data.result));
 	});
 
 	// bind datepicker to form elements
