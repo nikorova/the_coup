@@ -252,11 +252,13 @@ nav {
 
 .event {
 	width: 525px;
-	min-height: 90px;
+	min-height: 130px;
 	margin: 10px 0px 0px 25px;
 	padding: 5px 10px;
+	position: relative;
 
 	border: 1px solid rgb(115,178,198); 
+	box-shadow: 1px 1px 2px black;
 
 	background: 	rgb(6, 84, 110);
 	background: 	       linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
@@ -268,21 +270,24 @@ nav {
 }
 
 .e_image {
-	width: 95px;
-	height: 62px;
+	width: 105px;
+	height: 72px;
 	float: right; 
+	margin: 10px 0px 0px 0px;
 	position: relative;
 
 	border: 1px solid black;
 }
 
 .e_name {
+	width: 360px;
 	color: rgb(221, 221, 234);
 	font-size: 18px;
 }
 
 .desc {
 	margin: 0px 0px 0px 10px;
+	width: 410px;
 	color: rgb(221, 221, 234);
 	font-size: 12px;
 }
@@ -300,5 +305,14 @@ nav {
 	color: rgb(221, 221, 234);
 	font-size: 14px;
 	font-style: italic;
-	margin: 0px 10px 0px 0px;
+	float: right;
+}
+
+.clear {
+	clear: both;
+	width: 100%;
+}
+
+.inline {
+	display: inline;
 }

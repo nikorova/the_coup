@@ -16,13 +16,13 @@
 
 				return "<a href=\"#\">"
 					+ "<li class=\"event\">"
-					+	  "<p class=\"e_name\">" + item.title
-					+		  "<span class=\"dates\">"
-					+			  "<span class=\"p_date\">pub. " + fpds  + "</span>"
-					+			  "<span class=\"e_date\">" + feds + "</span>"
-					+		  "</span>"
-					+	  "</p>" 
-					+	  "<img class=\"e_image\" src=\"" + item.image_path + "\" ></img>"
+					+	  "<div class=\"e_name inline\">" + item.title + "</div>"
+					+		  "<div class=\"dates inline\">"
+					+			  "<div class=\"e_date\">pub. " + fpds  + "</div>"
+					+			  "<div class=\"p_date\">" + feds + "</div>"
+					+		  "</div>"
+					+	  "<div class=\"clear\"></div>" 
+					+	  "<img class=\"e_image\" src=\"" + item.image_path + "\" />"
 					+	  "<p class=\"desc\">" + item.description + "</p>"
 					+ "</li>"
 					+ "</a>";
