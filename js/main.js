@@ -229,7 +229,7 @@
 			images = e.target.files;
 			$('#up_file_path').val(images[0].name);
 		});
-		
+
 		$(this).trigger('blur');
 		$imageInput.trigger('click');					
 	});
@@ -245,9 +245,5 @@
 		});
 
 		document.getElementById('upload_event').reset();
-	});
-	
-	$(document).on('storage', function (e) {
-		console.log(e);
 	});
 });
