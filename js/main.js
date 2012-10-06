@@ -77,55 +77,41 @@
 			sd = d.toString().split(' ');
 			fd = sd[3] + '-' + months[sd[1]] + '-' + sd[2];
 
+			this.nothingObj = {
+				id: 'nothing',
+				title: 'nothing for today', 
+				description: 'very exciting fun time',
+				pub_date: fd, 
+				event_date: fd,
+				image_path: 'static/testPatternRetroSmall.jpg',
+			};
+
 			// get the daily events from server and display
-			$.get('scripts/getByDate.php?date=' + fd, 
-					function (data, stat, jqxhr) {
-						if (stat == 'success') {
-							if (data.length) {
-								$.each(data, function (_k, obj) {
-									todays.push(obj);	
-								});
+			var that = this;
 
-								for (i = 0; i < todays.length; i++) {
-									if (!mub) {
-										mub = EDB.build('panel', todays[i]);
-									} else {
-										mub += EDB.build('panel', todays[i]);
-									}
-									$('#eList').html(mub);
-								}
-							} else {
-								var nothingObj = {
-									id: 'nothing',
-									title: 'Nothing for today', 
-									description: 'very exciting fun time',
-									pub_date: fd, 
-									event_date: fd,
-									image_path: 'static/testPatternRetroSmall.jpg',
-								};
-
-								todays.push(nothingObj);
-
-								for (i = 0; i < todays.length; i++) {
-									console.log('todays in loop: ', todays[i]);
-									if (!mub) {
-										mub = EDB.build('panel', todays[i]);
-									} else {
-										mub += EDB.build('panel', todays[i]);
-									}
-									console.log('mub ', mub);
-									$('#eList').append(mub);
-								}
-
-							}
-						} else {
-							var message = 'request status: ' + stat + ' jqXHR: ' + jqxhr;
-							console.log(message);
-						}
+			$.get('scripts/getByDate.php?date=' + fd, function (data) {
+				if (data.length) {
+					$.each(data, function (_k, obj) {
+						todays.push(obj);	
 					});
+
+				} else {
+					todays.push(that.nothingObj);
+				}
+
+				for (i = 0; i < todays.length; i++) {
+					if (!mub) {
+						mub = EDB.build('panel', todays[i]);
+					} else {
+						mub += EDB.build('panel', todays[i]);
+					}
+					$eventDisplay.append(mub);
+				}
+			});
+
 			$eventDisplay.append(mub);
 
-
+			// bind mouseover show delete button
 			$eventDisplay.on('mouseenter', 'li.event', function (e) {
 				var $this = $(this);
 
@@ -169,8 +155,10 @@
 	EventStore.init('scripts/load_upcoming_events.php');
 
 	// check for File API
-	if (window.File &&  window.FileList){
-	} else { alert('browser does not support needed File API\'s'); }
+	if (window.File && window.FileList){
+	} else { alert('browser does not support needed File API\'s.' 
+			+ 'please use a modern browser like a goddamn human being.'); 
+	}
 
 
 	// fileupload plugin init

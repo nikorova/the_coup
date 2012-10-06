@@ -1,6 +1,4 @@
 <?php
-
-
 function deleteEvent($eventID) {
 require_once('conn.php');
 	$sql = "DELETE FROM `events` where id=:id";
