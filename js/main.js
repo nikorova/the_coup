@@ -7,49 +7,22 @@
 	EDB = {
 		build: function newDiv(type, newEvent) {
 			if (type == 'panel') {
-				return $('<div />').addClass('event').data('id', newEvent.id).append($('<span />').addClass('title').html(newEvent.title))
-					.append($('<span />').addClass('event_date').html(newEvent.event_date))
-					.append($('<span />').addClass('pub_date').html(newEvent.pub_date))
-					.append($('<div />').addClass('description').html(newEvent.description))
+
+				var div = $('<div />').addClass('eDispWrapper')
 					.append($('<button />').addClass('eBtn eDel hidden').html('delete'))
 					.append($('<button />').addClass('eBtn eEdit hidden').html('edit'))
-					.append($('<img />').addClass('eImage').attr('src', newEvent.image_path));
+					.append($('<div />').addClass('event').data('id', newEvent.id))
+						.children('.event')
+							.append($('<span />').addClass('title').html(newEvent.title))
+							.append($('<span />').addClass('event_date').html(newEvent.event_date))
+							.append($('<span />').addClass('pub_date').html(newEvent.pub_date))
+							.append($('<div />').addClass('description').html(newEvent.description))
+							.append($('<img />').addClass('eImage').attr('src', newEvent.image_path))
+						.end();
+
+				return div;
 			}
 		},
-/*
-		build: function (type, item) {
-			if (type == 'panel') {
-				var date = item.event_date.split('-');
-				var eds = new Date(date[1] + ' ' + date[2] + ' ' + date[0]);
-				var seds = eds.toDateString().split(' ');	
-				var feds = seds[0] + ' ' + seds[2] + ' ' + seds[1] + '' + seds[3];
-
-
-				var date = item.pub_date.split('-');
-				var pds = new Date(date[1] + ' ' + date[2] + ' ' + date[0]);
-				var spds = pds.toDateString().split(' ');	
-				var fpds = spds[2] + ' ' + spds[1] + '' + spds[3];
-
-				return "<li class=\"event\" data-event-id=" + item.id + ">"
-					+ 	'<div class=\"context_btn hidden\">'
-					+ 		'<span class="del_btn">DELETE</span> | '
-					+ 		'<span class="edit_btn">EDIT</span></div>'
-					+	  '<div class=\"e_name inline\">' + item.title + '</div>'
-					+		  "<div class=\"dates inline\">"
-					+			  "<div class=\"e_date\">pub. " + fpds  + "</div>"
-					+			  "<div class=\"p_date\">" + feds + "</div>"
-					+		  "</div>"
-					+	  "<div class=\"clear\"></div>" 
-					+	  "<img class=\"e_image\" src=\"" + item.image_path + "\" />"
-					+	  "<p class=\"desc\">" + item.description + "</p>"
-					+ "</li>";
-			}
-
-			if (type == 'frontpage' ) {
-
-			}
-		},
-*/
 	};
 
 	EventStore = {
@@ -115,15 +88,11 @@
 				}
 
 				for (i = 0; i < todays.length; i++) {
-					if (!mub) {
-						mub = EDB.build('panel', todays[i]);
-					} else {
-						mub += EDB.build('panel', todays[i]);
-					}
-					$eventDisplay.append(mub);
+					$eventDisplay.append(EDB.build('panel', todays[i]));
 				}
 			});
 
+			console.info(mub);
 			$eventDisplay.append(mub);
 
 
@@ -153,26 +122,27 @@
 				.append($('<button />').addClass('eBtn eCancel').html('cancel'));
 
 			// bind mouseover show delete/edit buttons
-			$eventDisplay.on('mouseenter', 'div.event', function (e) {
-				var $this = $(this);
+			$eventDisplay.on('mouseenter', 'div.eDispWrapper', function (e) {
+				var $event = $(this).children('.event');
 
-				$this.css('opacity', '0.8')
-					.find(".eBtn").removeClass('hidden');
+				$event.css('opacity', '0.6');
+				$(this).find(".eBtn").removeClass('hidden');
 			
-			}).on('mouseleave', 'div.event', function (e) {
-				var $this= $(this);
+			}).on('mouseleave', 'div.eDispWrapper', function (e) {
+				var $event= $(this).children('.event');
 
-				$this.css('opacity', '1')
-					.find(".eBtn").addClass('hidden');
+				$event.css('opacity', '1');
+				$(this).find(".eBtn").addClass('hidden');
 			});
 
 
 			// bind remove handler for events on display
-			$eventDisplay.on('click', 'div.event .eDel', function (e) {
-				var $this = $(this).parents('div.event'),	
+			$eventDisplay.on('click', '.eDel', function (e) {
+				var $this = $(this).siblings('div.event'),	
 				name = $this.find('.title').html(),
 				id = $this.data('id');
 
+				console.info($this);
 				if (confirm('delete event ' + name + '?')) {
 					$.get('scripts/deleteEvent.php?id=' + id, function () {
 						$this.remove();
@@ -181,26 +151,25 @@
 			})
 			
 			// bind edit handler for events on display
-			.on('click', 'div.event .eEdit', function (e) {
-				$event = $(this).parents('div.event');
+			.on('click', '.eEdit', function (e) {
+				$event = $(this).siblings('div.event');
 
 				newForm.find('.editInput').each(function(_k, input) {
 					var $input = $(input),
 						name = $input.attr('name'),
 						content = $event.find('*[class="' + name + '"]').html();
 
-					if ($input.is('input')) {
-						$input.val(content);
-					} else if ($input.is('textarea')) {
-						console.info(content);
+					if ($input.is('textarea')) {
 						$input.text(content);	
+					} else {
+						$input.val(content);
 					}
 				});
 
 				console.info($event.find('.eImage').attr('src'));
 				newForm.find('.eImage').attr('src', $event.find('.eImage').attr('src'));
 				newForm.data('id', $event.data('id'));
-				newForm.clone(true).replaceAll($event);
+				newForm.clone(true).replaceAll($(this).parents('.eDispWrapper'));
 			})
 			
 			// bind on submit handler for edit event on display

@@ -248,8 +248,8 @@ nav {
 .event, .editForm {
 	width: 525px;
 	min-height: 140px;
-	margin: 10px 0px 0px 25px;
 	position: relative;
+	color: rgb(255, 255, 255);
 
 	border: 1px solid rgb(115,178,198); 
 	box-shadow: 1px 1px 2px black;
@@ -261,12 +261,22 @@ nav {
 	background:    -webkit-linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
 }
 
+.editForm { margin: 10px 0px 0px 25px; }
+
+.eDispWrapper { 
+	width: 525px;
+	min-height: 140px;
+	margin: 10px 0px 0px 25px;
+	position: relative;
+}
+
 .eBtn {
 	width: 70px;
 	position: absolute;
 	border: 1px solid grey;
 	background: rgb(46, 49, 58);
 	color: white;
+	z-index: 1;
 
 }
 
@@ -287,19 +297,18 @@ nav {
 }
 
 .title {
+	width: 300px;
 	position: absolute;
 	top: 10px;
 	left: 10px;
-	color: rgb(221, 221, 234);
 	font-size: 18px;
-	border-bottom: white;
+	border-bottom: 1px solid white;
 }
 
 .description {
 	position: absolute;
 	top: 40px;
 	left: 10px;
-	color: rgb(221, 221, 234);
 	font-size: 12px;
 }
 
@@ -307,7 +316,7 @@ nav {
 	position: absolute; 
 	top: 7px;
 	right: 10px;
-	color: rgb(221, 221, 234);
+	border-bottom: 1px solid white;
 	font-size: 18px;
 }
 
@@ -315,7 +324,6 @@ nav {
 	position: absolute; 
 	top: 30px;
 	right: 10px;
-	color: rgb(221, 221, 234);
 	font-size: 14px;
 	font-style: italic;
 	float: right;
@@ -332,3 +340,4 @@ textarea.description { width: 300px; height: 60px; }
 .clear { clear: both; width: 100%; }
 .inline { display: inline; }
 .hidden { display: none; }
+
