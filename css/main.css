@@ -188,7 +188,7 @@ nav {
 	box-shadow: none;
 }
 
-#description {
+#upload_event #description {
 	height: 100px;
 	width: 300px;
 	max-width: 300px;
@@ -235,11 +235,6 @@ nav {
 	color: rgb(210, 210, 210);
 }
 
-.hidden {
-	display: none;
-	height: 0px;
-	width: 0px;
-}
 
 .bottom_logo {
 	height: 20px;
@@ -250,11 +245,10 @@ nav {
 	opacity: 0.7;
 }
 
-.event {
+.event, .editForm {
 	width: 525px;
-	min-height: 130px;
+	min-height: 140px;
 	margin: 10px 0px 0px 25px;
-	padding: 5px 10px;
 	position: relative;
 
 	border: 1px solid rgb(115,178,198); 
@@ -265,67 +259,76 @@ nav {
 	background: 	    -o-linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
 	background: 	  -moz-linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
 	background:    -webkit-linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
-
-	list-style: none;
 }
 
-.context_btn {
-	width: 525px;
-	min-height: 130px;
-	line-height: 130px;
-	text-align: center;
-	font-size: 40px;
+.eBtn {
+	width: 70px;
 	position: absolute;
-	z-index: 1;
+	border: 1px solid grey;
+	background: rgb(46, 49, 58);
+	color: white;
+
 }
 
-.edit_btn:hover, .del_btn:hover {
-	border-bottom: 3px solid black;	
-}
-.e_image {
+.eDel { bottom: 10px; left: 90px; }
+.eEdit { bottom: 10px; left: 10px; }
+.eSubmit { bottom: 10px; left: 10px; }
+.eCancel { bottom: 10px; left: 90px; }
+
+.eImage {
 	width: 105px;
 	height: 72px;
-	float: right; 
-	margin: 10px 0px 0px 0px;
-	position: relative;
+	margin: 17px 0px 0px 0px;
+	position: absolute;
+	top: 40px;
+	right: 10px;
 
 	border: 1px solid black;
 }
 
-.e_name {
-	width: 360px;
+.title {
+	position: absolute;
+	top: 10px;
+	left: 10px;
 	color: rgb(221, 221, 234);
 	font-size: 18px;
+	border-bottom: white;
 }
 
-.desc {
-	margin: 0px 0px 0px 10px;
-	width: 410px;
+.description {
+	position: absolute;
+	top: 40px;
+	left: 10px;
 	color: rgb(221, 221, 234);
 	font-size: 12px;
 }
 
-.dates {
-	float: right;	
-}
-
-.e_date {
+.event_date {
+	position: absolute; 
+	top: 7px;
+	right: 10px;
 	color: rgb(221, 221, 234);
 	font-size: 18px;
 }
 
-.p_date {
+.pub_date {
+	position: absolute; 
+	top: 30px;
+	right: 10px;
 	color: rgb(221, 221, 234);
 	font-size: 14px;
 	font-style: italic;
 	float: right;
 }
 
-.clear {
-	clear: both;
-	width: 100%;
-}
+.event .pub_date { top: 35px; }
 
-.inline {
-	display: inline;
-}
+.editInput { border: none; color: rgb(46, 49, 58); }
+input.title { width: 300px; }
+input.event_date {  text-align: right; width: 150px; }
+input.pub_date {  margin-top: 5px; text-align: right; width: 150px; }
+textarea.description { width: 300px; height: 60px; }
+
+.clear { clear: both; width: 100%; }
+.inline { display: inline; }
+.hidden { display: none; }

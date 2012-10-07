@@ -5,6 +5,18 @@
 		$imageInput = $('#up_image');
 
 	EDB = {
+		build: function newDiv(type, newEvent) {
+			if (type == 'panel') {
+				return $('<div />').addClass('event').data('id', newEvent.id).append($('<span />').addClass('title').html(newEvent.title))
+					.append($('<span />').addClass('event_date').html(newEvent.event_date))
+					.append($('<span />').addClass('pub_date').html(newEvent.pub_date))
+					.append($('<div />').addClass('description').html(newEvent.description))
+					.append($('<button />').addClass('eBtn eDel hidden').html('delete'))
+					.append($('<button />').addClass('eBtn eEdit hidden').html('edit'))
+					.append($('<img />').addClass('eImage').attr('src', newEvent.image_path));
+			}
+		},
+/*
 		build: function (type, item) {
 			if (type == 'panel') {
 				var date = item.event_date.split('-');
@@ -37,6 +49,7 @@
 
 			}
 		},
+*/
 	};
 
 	EventStore = {
@@ -113,35 +126,101 @@
 
 			$eventDisplay.append(mub);
 
-			// bind mouseover show delete button
-			$eventDisplay.on('mouseenter', 'li.event', function (e) {
+
+			var newForm = $('<form />').addClass('editForm')
+				.append($('<input />').addClass('editInput title').attr({
+					type: 'text',
+					name: 'title',
+					id: 'title'
+				}))
+				.append($('<input />').addClass('editInput event_date').attr({
+					type: 'date',
+					name: 'event_date',
+					id: 'eDate'
+				}))
+				.append($('<input />').addClass('editInput pub_date').attr({
+					type: 'date',
+					name: 'pub_date',
+					id: 'pDate'
+				}))
+				.append($('<textarea />').addClass('editInput description').attr({
+					type: 'text',
+					name: 'description',
+					id: 'description'
+				}))
+				.append($('<img />').addClass('eImage').attr('src', ''))
+				.append($('<button />').addClass('eBtn eSubmit').html('save'))
+				.append($('<button />').addClass('eBtn eCancel').html('cancel'));
+
+			// bind mouseover show delete/edit buttons
+			$eventDisplay.on('mouseenter', 'div.event', function (e) {
 				var $this = $(this);
 
 				$this.css('opacity', '0.8')
-					.find(".context_btn").removeClass('hidden');
+					.find(".eBtn").removeClass('hidden');
 			
-			}).on('mouseleave', 'li.event', function (e) {
+			}).on('mouseleave', 'div.event', function (e) {
 				var $this= $(this);
 
 				$this.css('opacity', '1')
-					.find(".context_btn").addClass('hidden');
+					.find(".eBtn").addClass('hidden');
 			});
 
 
-			// set remove handler for events on display
-			$eventDisplay.on('click', 'li.event .del_btn', function (e) {
-				var target = $(e.target),
-				$this = $(this).parents('li.event'),	
-				name = $this.find('.e_name').html(),
-				id = $this.attr('data-event-id');
-
-				console.info($this);
+			// bind remove handler for events on display
+			$eventDisplay.on('click', 'div.event .eDel', function (e) {
+				var $this = $(this).parents('div.event'),	
+				name = $this.find('.title').html(),
+				id = $this.data('id');
 
 				if (confirm('delete event ' + name + '?')) {
 					$.get('scripts/deleteEvent.php?id=' + id, function () {
 						$this.remove();
 					});
 				}
+			})
+			
+			// bind edit handler for events on display
+			.on('click', 'div.event .eEdit', function (e) {
+				$event = $(this).parents('div.event');
+
+				newForm.find('.editInput').each(function(_k, input) {
+					var $input = $(input),
+						name = $input.attr('name'),
+						content = $event.find('*[class="' + name + '"]').html();
+
+					if ($input.is('input')) {
+						$input.val(content);
+					} else if ($input.is('textarea')) {
+						console.info(content);
+						$input.text(content);	
+					}
+				});
+
+				console.info($event.find('.eImage').attr('src'));
+				newForm.find('.eImage').attr('src', $event.find('.eImage').attr('src'));
+				newForm.data('id', $event.data('id'));
+				newForm.clone(true).replaceAll($event);
+			})
+			
+			// bind on submit handler for edit event on display
+			.on('click', '.eSubmit', function (e) {
+				e.preventDefault();
+
+				var $this = $(this),
+					$form = $this.parents('.editForm'),
+					fData = $form.serializeArray(),
+					eData = {};
+
+				$.each(fData, function(k, v) {
+					eData[v.name] = v.value;
+				});
+
+				eData.id = $form.data('id');
+				eData.image_path = $form.find('.eImage').attr('src');
+
+				console.info(eData);
+				$form.replaceWith(EDB.build('panel', eData));
 			});
 		},
 
