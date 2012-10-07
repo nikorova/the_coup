@@ -9,8 +9,8 @@
 			if (type == 'panel') {
 
 				var div = $('<div />').addClass('eDispWrapper')
-					.append($('<button />').addClass('eBtn eDel hidden').html('delete'))
-					.append($('<button />').addClass('eBtn eEdit hidden').html('edit'))
+					.append($('<button />').addClass('eBtn eDel cntx hidden').html('delete'))
+					.append($('<button />').addClass('eBtn eEdit cntx hidden').html('edit'))
 					.append($('<div />').addClass('event').data('id', newEvent.id))
 						.children('.event')
 							.append($('<span />').addClass('title').html(newEvent.title))
@@ -102,12 +102,12 @@
 					name: 'title',
 					id: 'title'
 				}))
-				.append($('<input />').addClass('editInput event_date').attr({
+				.append($('<input />').addClass('editInput event_date dp').attr({
 					type: 'date',
 					name: 'event_date',
 					id: 'eDate'
 				}))
-				.append($('<input />').addClass('editInput pub_date').attr({
+				.append($('<input />').addClass('editInput pub_date dp').attr({
 					type: 'date',
 					name: 'pub_date',
 					id: 'pDate'
@@ -126,13 +126,13 @@
 				var $event = $(this).children('.event');
 
 				$event.css('opacity', '0.6');
-				$(this).find(".eBtn").removeClass('hidden');
+				$(this).find(".cntx").removeClass('hidden');
 			
 			}).on('mouseleave', 'div.eDispWrapper', function (e) {
 				var $event= $(this).children('.event');
 
 				$event.css('opacity', '1');
-				$(this).find(".eBtn").addClass('hidden');
+				$(this).find(".cntx").addClass('hidden');
 			});
 
 
@@ -169,7 +169,9 @@
 				console.info($event.find('.eImage').attr('src'));
 				newForm.find('.eImage').attr('src', $event.find('.eImage').attr('src'));
 				newForm.data('id', $event.data('id'));
-				newForm.clone(true).replaceAll($(this).parents('.eDispWrapper'));
+				newForm.find('.dp').datepicker();
+				newForm.data('dEvent', $event.detach());
+				newForm.clone(true).appendTo($(this).parents('.eDispWrapper'));
 			})
 			
 			// bind on submit handler for edit event on display
@@ -189,7 +191,14 @@
 				eData.image_path = $form.find('.eImage').attr('src');
 
 				console.info(eData);
-				$form.replaceWith(EDB.build('panel', eData));
+				$form.parent().replaceWith(EDB.build('panel', eData));
+			})
+
+			.on('click', '.eCancel', function (e) {
+				var $form = $(this).parent(),
+					dEvent = $form.data('dEvent');
+
+				$form.replaceWith(dEvent);	
 			});
 		},
 
@@ -230,8 +239,7 @@
 	});
 
 	// bind datepicker to form elements
-	$('#event_date').datepicker();
-	$('#pub_date').datepicker();
+	$('.dp').datepicker();
 
 	// empty array for images from form
 	var images = [];

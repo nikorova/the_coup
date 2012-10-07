@@ -261,7 +261,7 @@ nav {
 	background:    -webkit-linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
 }
 
-.editForm { margin: 10px 0px 0px 25px; }
+.editForm { z-index: 2 }
 
 .eDispWrapper { 
 	width: 525px;

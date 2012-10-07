@@ -78,14 +78,14 @@
 					<label class="clean up_label" for="pub_date"> publication date </label> 
 					<input name="pub_date"
 					id="pub_date"
-					class="clean input_field"
+					class="clean input_field dp"
 					type="date"
 					required> </input>
 
 					<label class="clean up_label" for="event_date"> event date </label>
 					<input name="event_date"
 					id="event_date"
-					class="clean input_field"
+					class="clean input_field dp"
 					type="date"
 					required> </input>
 
