@@ -189,9 +189,16 @@
 
 				eData.id = $form.data('id');
 				eData.image_path = $form.find('.eImage').attr('src');
-
-				console.info(eData);
-				$form.parent().replaceWith(EDB.build('panel', eData));
+				
+				$.ajax('scripts/editEvent.php', {
+					type: 'POST',
+					data: JSON.stringify(eData),
+					succss: $form.parent().replaceWith(EDB.build('panel', eData)),
+					error: function (data) {
+						console.warn(data);
+						$this.sibling('.eCancel').trigger('click');
+					}
+				});
 			})
 
 			.on('click', '.eCancel', function (e) {
