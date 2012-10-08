@@ -89,9 +89,10 @@
 					required> </input>
 
 					<label class="formBody"> upload image </label>
-					<input id="up_file_path" class="formBody" required/>
+					<input id="fileInput" class="formBody" required/>
 
-					<input id="up_image" type="file" name="image"  class="formBody hidden" required />
+					<!-- hidden file upload input -->
+					<input id="hFInput" type="file" name="image"  class="formBody hidden" required />
 
 					<div class="formBody">
 						<button id="#fSubmit" class="formBody fBtn" >Submit</button>

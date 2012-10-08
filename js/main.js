@@ -2,7 +2,7 @@
 	// cache selectors
 	var upForm = $('#upload_event'), 
 		$eventDisplay = $('#eList'),
-		$imageInput = $('#up_image');
+		$hiddenFileInput = $('#hFInput');
 
 	EDB = {
 		build: function newDiv(type, newEvent) {
@@ -92,10 +92,6 @@
 				}
 			});
 
-			console.info(mub);
-			$eventDisplay.append(mub);
-
-
 			var newForm = $('<form />').addClass('editForm')
 				.append($('<input />').addClass('editInput title').attr({
 					type: 'text',
@@ -117,15 +113,14 @@
 					name: 'description',
 					id: 'description'
 				}))
+				.append($('<input />').addClass('hidden eFUImage').attr('type', 'file'))
 				.append($('<img />').addClass('eImage').attr('src', ''))
 				.append($('<button />').addClass('eBtn eSubmit').html('save'))
 				.append($('<button />').addClass('eBtn eCancel').html('cancel'));
 
 			// bind mouseover show delete/edit buttons
 			$eventDisplay.on('mouseenter', 'div.eDispWrapper', function (e) {
-				var $event = $(this).children('.event');
-
-				$event.css('opacity', '0.6');
+				var $event = $(this).children('.event'); $event.css('opacity', '0.6');
 				$(this).find(".cntx").removeClass('hidden');
 			
 			}).on('mouseleave', 'div.eDispWrapper', function (e) {
@@ -138,11 +133,11 @@
 
 			// bind remove handler for events on display
 			$eventDisplay.on('click', '.eDel', function (e) {
-				var $this = $(this).siblings('div.event'),	
-				name = $this.find('.title').html(),
-				id = $this.data('id');
+				var $this = $(this).parent(),	
+				$form = $this.children('.event'),
+				name = $form.find('.title').html(),
+				id = $form.data('id');
 
-				console.info($this);
 				if (confirm('delete event ' + name + '?')) {
 					$.get('scripts/deleteEvent.php?id=' + id, function () {
 						$this.remove();
@@ -150,7 +145,7 @@
 				}
 			})
 			
-			// bind edit handler for events on display
+			// bind edit handler for events on display, create form
 			.on('click', '.eEdit', function (e) {
 				$event = $(this).siblings('div.event');
 
@@ -166,22 +161,32 @@
 					}
 				});
 
-				console.info($event.find('.eImage').attr('src'));
 				newForm.find('.eImage').attr('src', $event.find('.eImage').attr('src'));
 				newForm.data('id', $event.data('id'));
 				newForm.find('.dp').datepicker();
 				newForm.data('dEvent', $event.detach());
 				newForm.clone(true).appendTo($(this).parents('.eDispWrapper'));
+				
+				$(this).parent().on('click', '.eImage', function (e) {
+					eFUpload= document.getElementById('eFUImage'); 
+
+					eFUpload.addEventListener('change', function (e) {
+						images = e.target.files;
+						// lol toenail
+					});
+					$(this).find('.eFUImage').trigger('focus'); 
+				});
 			})
 			
-			// bind on submit handler for edit event on display
+			// bind submit handler for edit event on display
 			.on('click', '.eSubmit', function (e) {
 				e.preventDefault();
 
 				var $this = $(this),
 					$form = $this.parents('.editForm'),
 					fData = $form.serializeArray(),
-					eData = {};
+					eData = {},
+					post = {};
 
 				$.each(fData, function(k, v) {
 					eData[v.name] = v.value;
@@ -189,10 +194,11 @@
 
 				eData.id = $form.data('id');
 				eData.image_path = $form.find('.eImage').attr('src');
+				post.data = eData;
 				
 				$.ajax('scripts/editEvent.php', {
 					type: 'POST',
-					data: JSON.stringify(eData),
+					data: post,
 					succss: $form.parent().replaceWith(EDB.build('panel', eData)),
 					error: function (data) {
 						console.warn(data);
@@ -252,18 +258,18 @@
 	var images = [];
 
 	// handle client side file data
-	$('#up_file_path').on('focus', function (e) {
+	$('#fileInput').on('focus', function (e) {
 		e.preventDefault();
 	
-		iIn = document.getElementById('up_image'); 
+		hiddenFileInput = document.getElementById('hFInput'); 
 
-		iIn.addEventListener('change', function (e) {
+		hiddenFileInput.addEventListener('change', function (e) {
 			images = e.target.files;
-			$('#up_file_path').val(images[0].name);
+			$('#fileInput').val(images[0].name);
 		});
 
 		$(this).trigger('blur');
-		$imageInput.trigger('click');					
+		$hiddenFileInput.trigger('click');					
 	});
 
 

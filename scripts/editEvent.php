@@ -1,6 +1,6 @@
 <?php
 require_once('conn.php');
-function editEvent($dbh, $eventObj) {
+function editEvent($dbh, $eventArr) {
 	$sql = "UPDATE `events` SET " 
 		. "title=:title "
 		. "description=:description "
@@ -11,7 +11,8 @@ function editEvent($dbh, $eventObj) {
 
 	try {
 		$sth = $dbh->prepare($sql);
-		$sth->execute($eventData);
+		$sth->execute($eventArr);
+		echo "event updated!";
 	} catch (PDOException $e) {
 		echo "update failed: " . $e->getMessage();
 	}
@@ -19,7 +20,12 @@ function editEvent($dbh, $eventObj) {
 	$dbh = null;
 }
 
-foreach ($_POST as $k => $v) {
-	echo "$k and $v<br />";
+$pData = $_POST['data'];
+$pArr = array();
+
+foreach ($pData as $k => $v) {
+	$pArr[':'.$k] = $v;
 }
+
+echo editEvent($dbh, $pArr);
 

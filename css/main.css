@@ -134,6 +134,7 @@ nav {
 #upload_event {
 	font-size: 20px;
 	font-family: monospace;
+	padding: 0px 0px 8px 0px;
 }
 
 .formHeader {
@@ -302,9 +303,15 @@ textarea.formBody {
 	float: right;
 }
 
+.editInput { 
+	border: none;
+	color: rgb(46, 49, 58);
+	border: 1px solid white;
+	box-shadow: inset 2px 2px 2px 0px grey;
+}
+
 .event .pub_date { top: 35px; }
 
-.editInput { border: none; color: rgb(46, 49, 58); }
 input.title { width: 300px; }
 input.event_date {  text-align: right; width: 150px; }
 input.pub_date {  margin-top: 5px; text-align: right; width: 150px; }
