@@ -196,14 +196,15 @@
 				
 				// set form data to data prop for posting
 				post.data = eData;
-				
-				// attaching image path AFTER post.data created
-				eData.image_path = $form.find('.eImage').attr('src');
 
 				$.ajax('scripts/editEvent.php', {
 					type: 'POST',
 					data: post,
-					succss: $form.parent().replaceWith(EDB.build('panel', eData)),
+					success: function () {
+						// attaching image path AFTER post.data created
+						eData.image_path = $form.find('.eImage').attr('src');
+						$form.parent().replaceWith(EDB.build('panel', eData));
+					},
 					error: function (data) {
 						console.warn(data);
 						$this.sibling('.eCancel').trigger('click');
