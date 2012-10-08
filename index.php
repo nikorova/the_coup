@@ -45,11 +45,9 @@
 
 <div id="wrapper" class="borderTrans .boxShadowBlack ">
 	<div id="header" class="fontWhite BGpurpleGradientAplha boxShadowBlack">
-		<nav>
+		<nav class="barGradAlpha">
 			<h1> Coup Panel </h1>
 			<ul> 
-				<li> <a href="#"> New Event </a> </li>
-				<li> <a href="#"> New Event </a> </li>
 				<li> <a href="#"> New Event </a> </li>
 			</ul>
 		</nav>
@@ -57,52 +55,55 @@
 	<div class="corner_bit"></div>
 
 	<div id="app" >
-		<div id="left_bar">
+		<div id="left_bar" class="barGrad barBord">
 			<form id="upload_event" 
-				enctype="multipart/form-data" > 
-				<fieldset>
-					<legend> New Event </legend>
-					<label class="up_label" for="title"> title </label>
+				enctype="multipart/form-data"
+				class="fgFont" > 
+					<h3 class="formHeader"> New Event </h3>
+
+					<label class="formBody"> title </label>
 					<input name="title"
 					id="title"
-					class="clean input_field"
+					class="formBody"
 					type="text"
 					required> </input>
 
-					<label class="clean up_label" for="description"> event description </label>
+					<label class="formBody"> event description </label>
 					<textarea name="description"
-						class="clean"
-						id="description"
-						requied> </textarea> 
+					class="formBody"
+					id="description"
+					requied> </textarea> 
 
-					<label class="clean up_label" for="pub_date"> publication date </label> 
+					<label id="blarg" class="formBody"> publication date </label> 
 					<input name="pub_date"
 					id="pub_date"
-					class="clean input_field dp"
+					class="formBody dp"
 					type="date"
 					required> </input>
 
-					<label class="clean up_label" for="event_date"> event date </label>
+					<label class="formBody"> event date </label>
 					<input name="event_date"
 					id="event_date"
-					class="clean input_field dp"
+					class="formBody dp"
 					type="date"
 					required> </input>
 
-					<label class="clean up_label" for="up_image"> upload image </label>
-					<input class="clean hidden" type="hidden" name="MAX_FILE_SIZE" value="3000000" />
-					<input id="up_image" type="file" name="image"  class="clean hidden" required />
-					<input id="up_file_path" class="clean input_field" type="text" required/>
+					<label class="formBody"> upload image </label>
+					<input id="up_file_path" class="formBody" required/>
 
+					<input id="up_image" type="file" name="image"  class="formBody hidden" required />
 
-					<button id="#upload_submit" class="button" type="submit" >Submit </button>
-				</fieldset>
+					<div class="formBody">
+						<button id="#fSubmit" class="formBody fBtn" >Submit</button>
+						<button id="#fClear" class="formBody fBtn" >Clear</button>
+					</div>
 			</form>
 		</div>
 
-		<div id="right_bar">
+		<div id="right_bar" class="barGrad barBord fgFont">
 			<h2> Upcoming Events </h2>
-			<div id="upcoming_display">
+			<div id="#uDispSOverlay"></div>
+			<div id="upcoming_display" class="fgGrad">
 				<ul id="eList"></ul>
 			</div>
 		</div>
