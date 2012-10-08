@@ -1,14 +1,15 @@
 <?php
 
+require_once("conn.php");
+
 function mysqlDate($dateString) {
 	return $mysqlDate = date('Y-m-d', strtotime($dateString));
 }
 
-function getByDate($date) {
-	require_once("conn.php");
+function getByDate($dbh, $date) {
 
 	$sql = "SELECT id, title, description, pub_date, event_date," 
-	   . "image_path FROM `events` WHERE event_date=:date;";
+	   . "image_path FROM `events` WHERE pub_date=:date;";
 
 	try {
 		$sth = $dbh->prepare($sql);
@@ -30,7 +31,7 @@ function getByDate($date) {
 
 $query = $_GET["date"];
 
-$result= getByDate($query);
+$result= getByDate($dbh, $query);
 
 $resp = [];
 foreach ($result as $item) {
