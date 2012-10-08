@@ -1,0 +1,323 @@
+body,p,h1,h2,h3,h4,h5,h6,div,img,fieldset,legend,label,input,nav,ul,li,form,a,button
+{ padding: 0px; margin: 0px; }
+
+body {
+	background: url('../static/bg/background2.jpg');
+	background-color: #D2D2D2;
+	background-repeat: no-repeat;
+	font-family: monospace;
+}
+
+a { text-decoration: none; }
+
+nav ul { display: inline; }
+
+nav ul li {
+	list-style: none;
+	display: inline-block;
+}
+
+nav a {
+	color: white;
+	font-size: 15px; 
+	margin: 0px 10px 0px 0px;
+}
+
+nav  h1 {
+	display: inline;
+	font-size: 20px; 
+}
+
+nav {
+	height: 40px;
+	width: 730px;
+	padding-left: 30px;
+	margin: 0px 0px 0px -29px;
+	position: relative;
+
+
+	box-shadow: -1px 1px 4px 0px black;
+
+	line-height: 40px;
+	color: white;
+}
+
+.navGrad {
+	/**/
+	background-color: 	rgba(22,24,45,0.7);
+	background: 	       linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+	background: 	    -o-linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+	background: 	  -moz-linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+	background:    -webkit-linear-gradient(top, rgba(22,24,45,0.7), rgba(48,44,90,0.7));
+}
+
+.fgGrad {
+	background-color: 	rgb(221, 221, 239);
+	background: 	       linear-gradient(right, rgb(221, 221, 239), rgb(200, 200, 205));
+	background: 	    -o-linear-gradient(right, rgb(221, 221, 239), rgb(200, 200, 205));
+	background: 	  -moz-linear-gradient(right, rgb(221, 221, 239), rgb(200, 200, 205));
+	background:    -webkit-linear-gradient(right, rgb(221, 221, 239), rgb(200, 200, 205));
+}
+
+.barGradAlpha {
+	background-color: 	rgba(39, 32, 56, 0.8);
+	background: 	       linear-gradient(top, rgba(39, 32, 56, 0.8), rgba(27, 25, 68, 0.8));
+	background: 	    -o-linear-gradient(top, rgba(39, 32, 56, 0.8), rgba(27, 25, 68, 0.8));
+	background: 	  -moz-linear-gradient(top, rgba(39, 32, 56, 0.8), rgba(27, 25, 68, 0.8));
+	background:    -webkit-linear-gradient(top, rgba(39, 32, 56, 0.8), rgba(27, 25, 68, 0.8));
+}
+
+.barGrad {
+	background-color: 	rgb(39, 32, 56);
+	background: 	       linear-gradient(top, rgb(39, 32, 56), rgb(27, 25, 68));
+	background: 	    -o-linear-gradient(top, rgb(39, 32, 56), rgb(27, 25, 68));
+	background: 	  -moz-linear-gradient(top, rgb(39, 32, 56), rgb(27, 25, 68));
+	background:    -webkit-linear-gradient(top, rgb(39, 32, 56), rgb(27, 25, 68));
+}
+
+.barBord { border: 1px solid #595F70; }
+.fgFont { color: rgb(221, 221, 234); }
+.fgBg { background: rgb(221, 221, 234); }
+
+#wrapper {
+	width: 1000px;
+	min-width: 400px;
+	height: 100%;
+   	position: relative;
+	margin: 50px auto;
+	padding: 10px 0px 0px 0px;
+
+	border: 10px solid transparent;
+	border-bottom: 25px solid transparent;
+	border-top: none;
+	box-shadow: 1px 1px 5px grey, -1px -1px 5px grey;
+
+}
+
+#dev_splash {
+	width: 700px; 
+	min-width: 600px;
+	margin: 0px 0px 20px 0px;
+	padding-left: 30px;
+
+	position: absolute;
+
+	border-right: 10px solid transparent;
+	background: #262932;
+	box-shadow: 3px 3px 6px black;
+
+	top: 740px;
+	left: 0px;
+	color: grey;
+}
+
+#right_bar {
+	width: 630px;	
+	min-width: 200px;
+	margin: 0px 0px 4px 0px; 
+	float: right; 
+}
+
+#right_bar h2 {
+	margin: 5px 0px 5px 15px;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+
+#left_bar{
+	width: 350px;
+	min-width: 190px;
+	float: left;
+}
+
+#upload_event {
+	font-size: 20px;
+	font-family: monospace;
+	padding: 0px 0px 8px 0px;
+}
+
+.formHeader {
+	font-size: 20px;
+	border-bottom: 1px solid rgb(221, 221, 234);
+	width: 320px;
+	margin: 5px 0px 5px 10px;
+}
+
+.formBody {
+	margin: 10px auto;
+	display: block;
+	width: 300px;
+}
+
+input.formBody , textarea.formBody {
+	height: 25px; 
+	padding: 2px;
+
+	border: 1px solid white;
+	box-shadow: inset 2px 2px 2px 0px grey;
+
+	line-height: 23px;
+	font-size: 15px;
+}
+
+textarea.formBody { 
+	height: 100px;
+	max-width: 300px;
+}
+
+#up_image {
+	border: 3px solid red;
+	box-shadow: none;
+	display: none;
+}
+
+.fBtn {
+	width: 130px;
+	height: 35px;
+	margin: 10px 7px 10px 7px;
+	display: inline;
+	background-color: 	rgb(48,44,90);
+	color: white;
+	border: 1px solid grey;
+	font-size: 16px;
+}
+
+
+.corner_bit {
+	position: relative;
+	border-top: 10px solid rgb(39, 32, 56);
+	border-left: 19px solid transparent;
+	top: 0px;
+	left: -29px;
+	width: 0px;
+}
+ 
+.bottom_logo {
+	height: 20px;
+	width: 20px;
+	margin: 0px 5px 0px 0px;
+	float: right;
+	position: relative;
+	opacity: 0.7;
+}
+
+#upcoming_display {
+	width: 600px; 	
+	height: 512px;
+	margin: 5px 15px 15px 15px;
+
+	border: 1px solid white;
+	border-left: none;
+	box-shadow: inset 2px 0px 4px 0px grey;
+	
+	overflow: auto; 
+}
+
+#uDispSOverlay {
+
+}
+
+
+.event, .editForm {
+	width: 570px;
+	min-height: 140px;
+	position: relative;
+	color: rgb(255, 255, 255);
+
+	border: 1px solid rgb(115,178,198); 
+	box-shadow: 1px 1px 2px black;
+
+	background: 	rgb(6, 84, 110);
+	background: 	       linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
+	background: 	    -o-linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
+	background: 	  -moz-linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
+	background:    -webkit-linear-gradient(top left, rgb(6,84,110), rgb(32,130,163));
+}
+
+.editForm { z-index: 2 }
+
+.eDispWrapper { 
+	width: 525px;
+	min-height: 140px;
+	margin: 10px 0px 0px -3px;
+	position: relative;
+}
+
+.eBtn {
+	width: 70px;
+	position: absolute;
+	border: 1px solid grey;
+	background-color: 	rgb(48,44,90);
+	color: white;
+	z-index: 1;
+
+}
+
+.eDel { bottom: 10px; left: 100px; }
+.eEdit { bottom: 10px; left: 20px; }
+.eSubmit { bottom: 10px; left: 10px; }
+.eCancel { bottom: 10px; left: 90px; }
+
+.eImage {
+	width: 105px;
+	height: 72px;
+	margin: 17px 0px 0px 0px;
+	position: absolute;
+	top: 40px;
+	right: 10px;
+
+	border: 1px solid black;
+}
+
+.title {
+	width: 300px;
+	position: absolute;
+	top: 7px;
+	left: 20px;
+	font-size: 18px;
+	border-bottom: 1px solid white;
+}
+
+.description {
+	position: absolute;
+	top: 40px;
+	left: 20px;
+	font-size: 12px;
+}
+
+.event_date {
+	position: absolute; 
+	top: 7px;
+	right: 10px;
+	border-bottom: 1px solid white;
+	font-size: 18px;
+}
+
+.pub_date {
+	position: absolute; 
+	top: 30px;
+	right: 10px;
+	font-size: 14px;
+	font-style: italic;
+	float: right;
+}
+
+.editInput { 
+	border: none;
+	color: rgb(46, 49, 58);
+	border: 1px solid white;
+	box-shadow: inset 2px 2px 2px 0px grey;
+}
+
+.event .pub_date { top: 35px; }
+
+input.title { width: 300px; }
+input.event_date {  text-align: right; width: 150px; }
+input.pub_date {  margin-top: 5px; text-align: right; width: 150px; }
+textarea.description { width: 300px; height: 60px; }
+
+.clear { clear: both; width: 100%; }
+.inline { display: inline; }
+.hidden { display: none; }
+.highlight { color: rgb(210, 210, 210); }
