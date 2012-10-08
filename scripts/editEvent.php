@@ -1,10 +1,11 @@
 <?php
 require_once('conn.php');
 function editEvent($dbh, $eventArr) {
+
 	$sql = "UPDATE `events` SET " 
-		. "title=:title "
-		. "description=:description "
-		. "pub_date=:pub_date "
+		. "title=:title, "
+		. "description=:description, "
+		. "pub_date=:pub_date, "
 		. "event_date=:event_date "
 		. "WHERE id=:id";
 
@@ -14,7 +15,7 @@ function editEvent($dbh, $eventArr) {
 		$sth->execute($eventArr);
 		echo "event updated!";
 	} catch (PDOException $e) {
-		echo "update failed: " . $e->getMessage();
+		echo "<p> update failed: " . $e->getMessage() . "</p>";
 	}
 
 	$dbh = null;

@@ -193,9 +193,13 @@
 				});
 
 				eData.id = $form.data('id');
-				eData.image_path = $form.find('.eImage').attr('src');
+				
+				// set form data to data prop for posting
 				post.data = eData;
 				
+				// attaching image path AFTER post.data created
+				eData.image_path = $form.find('.eImage').attr('src');
+
 				$.ajax('scripts/editEvent.php', {
 					type: 'POST',
 					data: post,
